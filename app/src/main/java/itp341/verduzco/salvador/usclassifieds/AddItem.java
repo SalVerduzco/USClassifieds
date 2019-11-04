@@ -53,11 +53,11 @@ public class AddItem extends AppCompatActivity {
 
         // go back to the main activity
         Intent k = new Intent(this, MainActivity.class);
-        k.putExtra("description", newItem.description);
-        k.putExtra("location", newItem.location);
-        k.putExtra("title", newItem.title);
-        k.putExtra("price", newItem.price);
-        k.putExtra("seller", newItem.seller);
+        k.putExtra("description", newItem.getDescription());
+        k.putExtra("location", newItem.getLocation());
+        k.putExtra("title", newItem.getTitle());
+        k.putExtra("price", newItem.getPrice());
+        k.putExtra("seller", newItem.getSeller());
         startActivity(k);
     }
 }

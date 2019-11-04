@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "307614323155",
+    "firebase_url": "https://usclassifieds-team13.firebaseio.com",
+    "project_id": "usclassifieds-team13",
+    "storage_bucket": "usclassifieds-team13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307614323155:android:c26eba0c7c870d13a3df26",
+        "android_client_info": {
+          "package_name": "itp341.verduzco.salvador.usclassifieds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307614323155-cjrsfagdu5v95221s0hfhjltbpcg6m8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIW1A7cAmqeaSGnrmZYu5LE-sV82l-WsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307614323155-cjrsfagdu5v95221s0hfhjltbpcg6m8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

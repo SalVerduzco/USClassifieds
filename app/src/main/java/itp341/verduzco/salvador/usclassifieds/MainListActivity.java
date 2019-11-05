@@ -102,7 +102,7 @@ public class MainListActivity extends AppCompatActivity {
 
             Item item = items.get(position);
 
-            textTitle.setText(item.getSeller());
+            textTitle.setText(item.getUserId());
             textSubtitle.setText(item.getDescription());
 
             return convertView;

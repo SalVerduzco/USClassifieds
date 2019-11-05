@@ -95,7 +95,7 @@ public class DetailActivity extends AppCompatActivity {
 
     //TODO load data from existing item object
     private void loadData(Item item) {
-        editSeller.setText(item.getSeller());
+        editSeller.setText(item.getUserId());
         editLocation.setText(item.getLocation());
         editPrice.setText(item.getPrice());
         editDescription.setText(item.getDescription());
@@ -108,7 +108,7 @@ public class DetailActivity extends AppCompatActivity {
         Log.d(TAG, "saveAndClose");
 
         Item item = new Item();
-        item.setSeller(editSeller.getText().toString());
+        item.setUserId(editSeller.getText().toString());
         item.setLocation(editLocation.getText().toString());
 
         if (position == -1){

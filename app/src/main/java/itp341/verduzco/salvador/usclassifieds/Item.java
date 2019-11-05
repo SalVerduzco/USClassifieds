@@ -24,13 +24,13 @@ public class Item {
         this.userId = seller.getText().toString();
     }
 
-    public Item(String description, String location, String title, String price, String userId, String picture_url, boolean is_available) {
+    public Item(String description, String location, String title, String price, String userId, boolean is_available) {
         this.description = description;
         this.location = location;
         this.title = title;
         this.price = price;
         this.userId = userId;
-        this.picture_url = picture_url;
+        this.picture_url = "default";
         this.is_available = is_available;
     }
 
@@ -90,4 +90,19 @@ public class Item {
         this.is_available = is_available;
     }
 
+    public String getPicture_url() {
+        return picture_url;
+    }
+
+    public void setPicture_url(String picture_url) {
+        this.picture_url = picture_url;
+    }
+
+    public boolean isIs_available() {
+        return is_available;
+    }
+
+    public void setIs_available(boolean is_available) {
+        this.is_available = is_available;
+    }
 }

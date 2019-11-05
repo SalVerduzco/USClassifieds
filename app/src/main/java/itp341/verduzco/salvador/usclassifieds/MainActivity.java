@@ -19,29 +19,27 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             Bundle extras = getIntent().getExtras();
-            String description = extras.getString("description");
-            String location = extras.getString("location");
-            String title = extras.getString("title");
-            // int price = Integer.parseInt(extras.getString("price"));
-            String seller = extras.getString("seller");
+            String title = extras.get("title").toString();
 
             ListView item_list = (ListView) findViewById(R.id.item_list);
             ArrayList<String> listItems = new ArrayList<>();
-            listItems.add(description);
+            listItems.add(title);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.item_view, R.id.textView, listItems);
             item_list.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
 
-        Button button = findViewById(R.id.send_buy);
-        button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, MainListActivity.class);
-                startActivity(intent);
-            }
-        });
+    public void onClickDemoPage(View view) {
+        Intent intent = new Intent(this, DemoListActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickBuyPage(View view) {
+        Intent intent = new Intent(this, MainListActivity.class);
+        startActivity(intent);
     }
 
     public void onClickAddItem(View view) {

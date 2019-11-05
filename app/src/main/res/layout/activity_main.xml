@@ -83,13 +83,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/send_buy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="Send to buy page"
-        app:layout_constraintBottom_toTopOf="@+id/send_profile"></Button>
+
 
     <Button
         android:layout_marginTop="200dp"
@@ -99,13 +93,16 @@
         android:text="Send to profile page"
         app:layout_constraintTop_toBottomOf="@+id/filter"></Button>
 
-=======
-        android:onClick="onClickBuyPage"
+    <Button
+        android:id="@+id/send_buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Send to buy page"
+        app:layout_constraintBottom_toTopOf="@+id/send_profile"
+        android:onClick="onClickBuyPage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
->>>>>>> 98cf2f93bad68aa3c286314d0ac7650d738885d5
-
+        app:layout_constraintTop_toTopOf="parent"></Button>
+    
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"

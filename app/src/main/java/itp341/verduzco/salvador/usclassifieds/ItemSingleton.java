@@ -49,4 +49,14 @@ public class ItemSingleton {
     }
 
 
+    public void parse(String category){
+        /* remove anything not in this category */
+        for(Item i : items){
+            if(!i.getDescription().equalsIgnoreCase(category)){
+                items.remove(i);
+            }
+        }
+    }
+
+
 }

@@ -9,11 +9,11 @@ public class Item { // serializable added later
     private String seller;
     private String location;
     private String description;
-    private String state;
+    private String category;
     private String title;
     private String price;
-    private String website;
-    private double rating;
+    //private double rating;
+    // private String website; <-- not needed
 
     Item(EditText description, EditText location, EditText title, EditText price, TextView seller) {
         this.description = description.getText().toString();
@@ -27,20 +27,17 @@ public class Item { // serializable added later
     //constructor used for testing
     public Item() {
         super();
-
     }
 
-    public Item(String seller, String location, String description, String state,
+    public Item(String seller, String location, String description, String category,
                 String title, String price, String website, double rating) {
         super();
         this.seller = seller;
         this.location = location;
         this.description = description;
-        this.state = state;
+        this.category = category;
         this.title = title;
         this.price = price;
-        this.website = website;
-        this.rating = rating;
     }
 
 
@@ -55,13 +52,13 @@ public class Item { // serializable added later
     }
 
 
-    public String getState() {
-        return state;
+    public String getCategory() {
+        return category;
     }
 
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 
@@ -105,25 +102,22 @@ public class Item { // serializable added later
     }
 
 
-    public String getWebsite() {
-        return website;
-    }
+//    public String getWebsite() {
+//        return website;
+//    }
 
 
-    public void setWebsite(String website) {
-        this.website = website;
-    }
+//    public void setWebsite(String website) {
+//        this.website = website;
+//    }
 
 
-    public double getRating() {
-        return rating;
-    }
-
-
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
+//    public double getRating() {
+//        return rating;
+//    }
+//    public void setRating(double rating) {
+//        this.rating = rating;
+//    }
 
 
     //TODO toString()

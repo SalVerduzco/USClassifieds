@@ -87,6 +87,7 @@
         android:id="@+id/send_buy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:text="Send to buy page"
         app:layout_constraintBottom_toTopOf="@+id/send_profile"></Button>
 
@@ -98,12 +99,21 @@
         android:text="Send to profile page"
         app:layout_constraintTop_toBottomOf="@+id/filter"></Button>
 
+=======
+        android:onClick="onClickBuyPage"
+        android:text="Send to buy page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+>>>>>>> 98cf2f93bad68aa3c286314d0ac7650d738885d5
 
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to login Page"/>
+        android:text="Go to login Page"
+        android:onClick="onClickLoginPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/demo_button"

@@ -60,7 +60,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DemoListActivity.class);
         startActivity(intent);
     }
+<<<<<<< HEAD
 
+=======
+    public void onClickLoginPage(View view){
+        Intent intent = new Intent(this, LoginPage.class);
+        startActivity(intent);
+    }
+>>>>>>> 98cf2f93bad68aa3c286314d0ac7650d738885d5
 
     public void onClickBuyPage(View view) {
         Intent intent = new Intent(this, MainListActivity.class);

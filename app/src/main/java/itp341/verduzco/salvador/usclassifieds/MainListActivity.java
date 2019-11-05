@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,7 @@ public class MainListActivity extends AppCompatActivity {
 
     private Button buttonAdd;
     private ListView listView;
+    public String category = "all";
 
     //TODO create array and adapter
 
@@ -39,11 +41,6 @@ public class MainListActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
 
         List<Item> items = ItemSingleton.get(this).getItems();
-//        arrayAdapter = new ArrayAdapter<>(
-//                this,
-//                android.R.layout.simple_list_item_1,
-//                items);
-//        listView.setAdapter(arrayAdapter);
 
         itemAdapter = new ItemAdapter(this, items);
         listView.setAdapter(itemAdapter);
@@ -76,6 +73,7 @@ public class MainListActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         Log.d(TAG, "onActivityResult: requestCode: " + requestCode);
 
         itemAdapter.notifyDataSetChanged();
@@ -102,10 +100,52 @@ public class MainListActivity extends AppCompatActivity {
 
             Item item = items.get(position);
 
-            textTitle.setText(item.getSeller());
+            textTitle.setText(item.getUserId());
             textSubtitle.setText(item.getDescription());
 
             return convertView;
+        }
+    }
+
+    public void LoadData(){
+
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        String old_category = category;
+
+        switch(view.getId()) {
+            case R.id.radio_books:
+                if (checked){
+                    category = "books";
+                }
+                    break;
+            case R.id.radio_electronics:
+                if (checked){
+                    category = "electronics";
+                }
+                    break;
+            case R.id.radio_furniture:
+                if (checked){
+                    category = "furniture";
+                }
+                    break;
+            case R.id.radio_clothing:
+                if (checked){
+                    category = "clothing";
+                }
+                    break;
+        }
+
+        if(!old_category.equalsIgnoreCase(category)){
+
+            /* BASIL -> QUERY ITEMS BY CATEGORY */
+            ItemSingleton.get(this).parse(category);
+            itemAdapter.notifyDataSetChanged();
         }
     }
 

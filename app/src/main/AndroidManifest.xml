@@ -10,13 +10,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".Loginpage2"></activity>
         <activity
             android:name=".LoginPage"
             android:label="@string/title_activity_login_page"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".UpdateProfile"></activity>
+
         <activity android:name=".DetailActivity" />
         <activity android:name=".MainListActivity" />
+        <activity android:name=".DemoListActivity" />
         <activity android:name=".AddItem" />
         <activity android:name=".MainActivity">
             <intent-filter>

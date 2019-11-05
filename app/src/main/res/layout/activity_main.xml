@@ -87,6 +87,7 @@
         android:id="@+id/send_buy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClickBuyPage"
         android:text="Send to buy page"></Button>
 
     <Button
@@ -94,5 +95,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go to login Page"/>
+
+    <Button
+        android:id="@+id/demo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:onClick="onClickDemoPage"
+        android:text="Demo Page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

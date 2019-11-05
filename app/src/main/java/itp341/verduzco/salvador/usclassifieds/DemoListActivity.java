@@ -1,0 +1,42 @@
+package itp341.verduzco.salvador.usclassifieds;
+
+import android.nfc.Tag;
+import android.os.Bundle;
+import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+public class DemoListActivity extends AppCompatActivity {
+    private static String TAG="DemoListActivity";
+    private RecyclerView mList;
+    private FirebaseFirestore mFirestore;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.demo_list_activity);
+
+        mList = (RecyclerView) findViewById(R.id.recycler_demo);
+        mFirestore = FirebaseFirestore.getInstance();
+
+        mFirestore.collection("Items").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if(e != null) {
+                    Log.d(TAG, e.getMessage());
+                }
+                for (DocumentSnapshot snapshot: queryDocumentSnapshots) {
+                    Log.d(TAG, "VAL--" + snapshot.get("title").toString());
+                }
+            }
+        });
+    }
+}

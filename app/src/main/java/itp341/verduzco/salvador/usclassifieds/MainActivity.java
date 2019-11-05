@@ -42,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button button2 = findViewById(R.id.send_profile);
+        button2.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this, UpdateProfile.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onClickAddItem(View view) {

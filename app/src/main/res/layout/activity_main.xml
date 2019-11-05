@@ -87,6 +87,15 @@
         android:id="@+id/send_buy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send to buy page"></Button>
+        android:text="Send to buy page"
+        app:layout_constraintBottom_toTopOf="@+id/send_profile"></Button>
+
+    <Button
+        android:layout_marginTop="200dp"
+        android:id="@+id/send_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send to profile page"
+        app:layout_constraintTop_toBottomOf="@+id/filter"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

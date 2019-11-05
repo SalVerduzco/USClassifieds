@@ -109,6 +109,9 @@ public class MainListActivity extends AppCompatActivity {
 
     public void LoadData(){
 
+        /* BASIL -> QUERY FOR ALL ITEMS */
+        //ItemSingleton set list to query
+
     }
 
     public void onRadioButtonClicked(View view) {

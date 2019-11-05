@@ -88,13 +88,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClickBuyPage"
-        android:text="Send to buy page"></Button>
+        android:text="Send to buy page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to login Page"/>
+        android:text="Go to login Page"
+        android:onClick="onClickLoginPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/demo_button"

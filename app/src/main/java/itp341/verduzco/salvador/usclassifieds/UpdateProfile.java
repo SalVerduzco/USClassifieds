@@ -39,7 +39,7 @@ public class UpdateProfile extends AppCompatActivity {
         emailEdit   = (EditText)findViewById(R.id.editProfileEmail);
         phoneEdit   = (EditText)findViewById(R.id.editProfilePhone);
 
-        User newUser = new User(nameEdit.getText().toString(), emailEdit.getText().toString(), phoneEdit.getText().toString());
+        User newUser = new User(nameEdit.getText().toString(),emailEdit.getText().toString(), "",phoneEdit.getText().toString());
         allUsers.add(newUser);
         Map<String, Object> mymap = new HashMap<>();
 

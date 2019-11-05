@@ -36,23 +36,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DemoListActivity.class);
         startActivity(intent);
     }
-
-
-    Button button = findViewById(R.id.send_buy);
-    button.setOnClickListener(new View.OnClickListener(){
-        public void onClick(View view){
-            Intent intent = new Intent(MainActivity.this, MainListActivity.class);
-            startActivity(intent);
-        }
-    });
-
-    Button loginbutton= findViewById(R.id.login);
-    loginbutton.setOnClickListener(new View.OnClickListener(){
-        public void onClick(View view){
-            Intent intent = new Intent(MainActivity.this, LoginPage.class);
-            startActivity(intent);
-        }
-    });
+    public void onClickLoginPage(View view){
+        Intent intent = new Intent(this, LoginPage.class);
+        startActivity(intent);
+    }
 
     public void onClickBuyPage(View view) {
         Intent intent = new Intent(this, MainListActivity.class);

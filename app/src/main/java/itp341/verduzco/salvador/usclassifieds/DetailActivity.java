@@ -103,13 +103,13 @@ public class DetailActivity extends AppCompatActivity {
 
     //TODO load data from existing item object
     private void loadData(Item item) {
-        editSeller.setText(item.getSeller());
+        editSeller.setText(item.getUserId());
         editLocation.setText(item.getLocation());
         editPrice.setText(item.getPrice());
         editDescription.setText(item.getDescription());
         editTitle.setText(item.getTitle());
-        int pos = spinnerAdapter.getPosition(item.getCategory());
-        spinnerState.setSelection(pos);
+        //int pos = spinnerAdapter.getPosition(item.getCategory());
+        //spinnerState.setSelection(pos);
 
     }
 
@@ -121,13 +121,12 @@ public class DetailActivity extends AppCompatActivity {
 //        DatabaseReference myRef = database.getReference();
 
         Item item = new Item();
-
-        item.setSeller(editSeller.getText().toString());
+        item.setUserId(editSeller.getText().toString());
         item.setLocation(editLocation.getText().toString());
         item.setTitle(editTitle.getText().toString());
         item.setPrice(editPrice.getText().toString());
         item.setDescription(editDescription.getText().toString());
-        item.setCategory(spinnerState.getSelectedItem().toString());
+        //item.setCategory(spinnerState.getSelectedItem().toString());
 
         if (position == -1){
             ItemSingleton.get(this).addItem(item);

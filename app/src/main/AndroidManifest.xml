@@ -12,6 +12,7 @@
         <activity android:name=".UpdateProfile"></activity>
         <activity android:name=".DetailActivity" />
         <activity android:name=".MainListActivity" />
+        <activity android:name=".DemoListActivity" />
         <activity android:name=".AddItem" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -27,4 +27,5 @@
     <string name="label_welcome">Find cheap items sold by fellow Trojans!</string>
     <string name="label_add">Sell</string>
     <string name="label_delete">Delete</string>
+    <string name="title_activity_login_page">LoginPage</string>
 </resources>

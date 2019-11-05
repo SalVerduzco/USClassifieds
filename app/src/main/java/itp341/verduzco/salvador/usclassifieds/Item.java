@@ -74,22 +74,6 @@ public class Item {
         this.userId = userId;
     }
 
-    public String getPictureUrl() {
-        return picture_url;
-    }
-
-    public void setPictureUrl(String picture_url) {
-        this.picture_url = picture_url;
-    }
-
-    public boolean isAvailable() {
-        return is_available;
-    }
-
-    public void setIsAvailable(boolean is_available) {
-        this.is_available = is_available;
-    }
-
     public String getPicture_url() {
         return picture_url;
     }

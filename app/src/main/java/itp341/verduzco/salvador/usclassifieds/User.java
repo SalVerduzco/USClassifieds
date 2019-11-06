@@ -1,8 +1,11 @@
 package itp341.verduzco.salvador.usclassifieds;
 
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
 import java.util.Arrays;
 import java.util.List;
 
+@IgnoreExtraProperties
 public class User {
     public String name;
     public String location;

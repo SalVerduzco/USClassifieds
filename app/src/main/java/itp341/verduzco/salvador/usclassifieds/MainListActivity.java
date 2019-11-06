@@ -1,34 +1,39 @@
 package itp341.verduzco.salvador.usclassifieds;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainListActivity extends AppCompatActivity {
 
     public static final String TAG = MainListActivity.class.getSimpleName();
+    private FirestoreHelper firestoreHelper;
+
+    private List<Item> mItems;
+    private ItemListAdapter mItemListAdapter;
 
     private Button buttonAdd;
-    private ListView listView;
+    private ListView itemList;
     public String category = "all";
-
-    //TODO create array and adapter
-
-    //    private ArrayAdapter<Item> arrayAdapter;
-    private ItemAdapter itemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +41,31 @@ public class MainListActivity extends AppCompatActivity {
         setContentView(R.layout.main_list_activity);
         Log.d(TAG, "onCreate");
 
-        //find views
+        // Find views
         buttonAdd = (Button) findViewById(R.id.button_add);
-        listView = (ListView) findViewById(R.id.listView);
+        itemList = (ListView) findViewById(R.id.listView);
 
-        List<Item> items = ItemSingleton.get(this).getItems();
+        firestoreHelper = new FirestoreHelper();
 
-        itemAdapter = new ItemAdapter(this, items);
-        listView.setAdapter(itemAdapter);
+        mItems = new ArrayList<>();
+        mItemListAdapter = new ItemListAdapter(this, mItems);
+        itemList.setAdapter(mItemListAdapter);
+
+        firestoreHelper.getItemsRef().addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                // error occured.. log it
+                if(e != null) {
+                    Log.d(TAG, e.getMessage());
+                }
+
+                mItems.clear();
+                for (DocumentSnapshot snapshot: queryDocumentSnapshots) {
+                    mItems.add(snapshot.toObject(Item.class));
+                }
+                mItemListAdapter.notifyDataSetChanged();
+            }
+        });
 
         //TODO What happens when user clicks add?
         buttonAdd.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +78,7 @@ public class MainListActivity extends AppCompatActivity {
         });
 
         //TODO create listview item click listener
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Log.d(TAG, "listView: onListItemClick");
@@ -65,7 +87,6 @@ public class MainListActivity extends AppCompatActivity {
                 startActivityForResult(intent, 0);
             }
         });
-
 
     }
 
@@ -76,41 +97,7 @@ public class MainListActivity extends AppCompatActivity {
 
         Log.d(TAG, "onActivityResult: requestCode: " + requestCode);
 
-        itemAdapter.notifyDataSetChanged();
-
-    }
-
-
-    private class ItemAdapter extends ArrayAdapter<Item>{
-        private List<Item> items;
-
-        public ItemAdapter(Context context, List<Item> items){
-            super(context, R.layout.list_item_shop3, items);
-            this.items = items;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null){
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_shop3, parent, false);
-            }
-
-            TextView textTitle = convertView.findViewById(R.id.text_title);
-            TextView textSubtitle = convertView.findViewById(R.id.text_subtitle);
-
-            Item item = items.get(position);
-
-            textTitle.setText(item.getUserId());
-            textSubtitle.setText(item.getDescription());
-
-            return convertView;
-        }
-    }
-
-    public void LoadData(){
-
-        /* BASIL -> QUERY FOR ALL ITEMS */
-        //ItemSingleton set list to query
+        mItemListAdapter.notifyDataSetChanged();
 
     }
 
@@ -145,10 +132,8 @@ public class MainListActivity extends AppCompatActivity {
         }
 
         if(!old_category.equalsIgnoreCase(category)){
-
-            /* BASIL -> QUERY ITEMS BY CATEGORY */
             ItemSingleton.get(this).parse(category);
-            itemAdapter.notifyDataSetChanged();
+            mItemListAdapter.notifyDataSetChanged();
         }
     }
 

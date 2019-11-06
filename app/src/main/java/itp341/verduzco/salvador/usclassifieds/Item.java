@@ -3,6 +3,9 @@ package itp341.verduzco.salvador.usclassifieds;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class Item {
     public String description;
     public String location;

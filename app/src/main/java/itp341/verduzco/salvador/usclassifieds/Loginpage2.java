@@ -21,6 +21,8 @@ public class Loginpage2 extends AppCompatActivity {
     TextView nameTV;
     TextView emailTV;
     TextView idTV;
+    TextView locationTV;
+    TextView numberTV;
     GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -33,6 +35,8 @@ public class Loginpage2 extends AppCompatActivity {
         nameTV = findViewById(R.id.name);
         emailTV = findViewById(R.id.email);
         idTV =findViewById(R.id.id);
+        locationTV = findViewById(R.id.edit_location);
+        numberTV = findViewById(R.id.edit_number);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -47,6 +51,13 @@ public class Loginpage2 extends AppCompatActivity {
             String personFamilyName = acct.getFamilyName();
             String personEmail = acct.getEmail();
             String personId = acct.getId();
+            String personLocation = locationTV.getText().toString();
+            String personNumber = numberTV.getText().toString();
+
+            //send to backend
+            User currUser = new User(personName, personEmail, personLocation, personNumber);
+            FirestoreHelper firestore = new FirestoreHelper();
+            firestore.doLogin(personId, currUser);
 
             nameTV.setText("Name: " + personName);
             emailTV.setText("Email: " + personEmail);

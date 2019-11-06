@@ -32,7 +32,7 @@ public class FirestoreHelper {
         user_map.put("email", user.getEmail());
         user_map.put("phone", user.getPhone());
 
-        this.firebaseFirestore.collection("Items")
+        this.firebaseFirestore.collection("Users")
                 .document(userId)
                 .set(user_map, SetOptions.merge())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

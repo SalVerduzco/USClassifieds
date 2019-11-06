@@ -56,7 +56,22 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edit_seller"
+                android:id="@+id/edit_number"
+                android:layout_gravity="fill_horizontal"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:ems="6"
+                android:inputType="textCapWords"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_gravity="left"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="Location:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edit_location"
                 android:layout_gravity="fill_horizontal"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:ems="6"

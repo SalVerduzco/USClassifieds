@@ -16,17 +16,8 @@ public class Item {
     private String picture_url;
     private boolean is_available;
 
-//    public Item() {
-//        super();
-//    }
-//
-//    Item(EditText description, EditText location, EditText title, EditText price, TextView seller) {
-//        this.description = description.getText().toString();
-//        this.location = location.getText().toString();
-//        this.title = title.getText().toString();
-//        this.price = title.getText().toString();
-//        this.userId = seller.getText().toString();
-//    }
+    public Item() {
+    }
 
     public Item(String description, String location, String title, String price, String category, String userId) {
         this.description = description;

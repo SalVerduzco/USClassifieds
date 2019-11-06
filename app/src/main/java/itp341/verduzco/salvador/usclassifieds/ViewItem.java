@@ -16,10 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class DetailActivity extends AppCompatActivity {
+public class ViewItem extends AppCompatActivity {
 
     public static final String TAG = DetailActivity.class.getSimpleName();
     private FirestoreHelper firestoreHelper;
@@ -27,14 +29,13 @@ public class DetailActivity extends AppCompatActivity {
     //TODO how will we pass data from MainList?
     public static final String EXTRA_POSITION = DetailActivity.class.getPackage().getName() + "extra_position";
 
-    private EditText editSeller;
-    private EditText editLocation;
-    private EditText editDescription;
+    private TextView editSeller;
+    private TextView editLocation;
+    private TextView editDescription;
     private Spinner spinnerState;
-    private EditText editTitle;
-    private EditText editPrice;
+    private TextView editTitle;
+    private TextView editPrice;
     //private EditText editWebsite;
-    private Button buttonSaveListing;
     private Button buttonDeleteListing;
 
     private int position;
@@ -45,7 +46,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_activity);
+        setContentView(R.layout.activity_view_item);
         firestoreHelper = new FirestoreHelper();
 
         //TODO get intent data
@@ -56,13 +57,12 @@ public class DetailActivity extends AppCompatActivity {
 
         //findViews
         //editSeller = (EditText) findViewById(R.id.edit_seller); //name
-        editLocation = (EditText) findViewById(R.id.edit_location); //address
-        editDescription = (EditText) findViewById(R.id.edit_description); //city
+        editLocation =  findViewById(R.id.edit_location); //address
+        editDescription =  findViewById(R.id.edit_description); //city
         spinnerState = (Spinner) findViewById(R.id.spinner_state); // update
-        editTitle = (EditText) findViewById(R.id.edit_title); //zip
-        editPrice = (EditText) findViewById(R.id.edit_price);
+        editTitle =  findViewById(R.id.edit_title); //zip
+        editPrice = findViewById(R.id.edit_price);
         //editWebsite = (EditText) findViewById(R.id.edit_website);
-        buttonSaveListing = (Button) findViewById(R.id.button_save_listing);
         buttonDeleteListing = (Button) findViewById(R.id.button_delete_listing);
 
         spinnerAdapter = ArrayAdapter.createFromResource(this,
@@ -85,14 +85,7 @@ public class DetailActivity extends AppCompatActivity {
 
             }
         });
-        buttonSaveListing.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                saveAndClose();
-
-            }
-        });
 
         //TODO check if this is an existing or new listing
         if (position != -1){

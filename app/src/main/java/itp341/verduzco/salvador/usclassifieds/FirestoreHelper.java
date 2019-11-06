@@ -74,6 +74,10 @@ public class FirestoreHelper {
                 .whereEqualTo("is_available", false);
     }
 
+    public Query getItemByCategory(String category) {
+        return this.getItemsRef().whereEqualTo("category", category);
+    }
+
     public void addItem(Item item, FirestoreHelperListener listener) {
         this.firebaseFirestore.collection("Items")
                 .add(item)

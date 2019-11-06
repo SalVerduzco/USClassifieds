@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,8 +23,10 @@ public class Loginpage2 extends AppCompatActivity {
     TextView nameTV;
     TextView emailTV;
     TextView idTV;
-    TextView locationTV;
-    TextView numberTV;
+    EditText locationTV;
+    EditText numberTV;
+    String personName;
+    String personEmail;
     GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -46,18 +50,11 @@ public class Loginpage2 extends AppCompatActivity {
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(Loginpage2.this);
         if(acct!= null){
-            String personName = acct.getDisplayName();
+            personName = acct.getDisplayName();
             String personGivenName = acct.getGivenName();
             String personFamilyName = acct.getFamilyName();
-            String personEmail = acct.getEmail();
+            personEmail = acct.getEmail();
             String personId = acct.getId();
-            String personLocation = locationTV.getText().toString();
-            String personNumber = numberTV.getText().toString();
-
-            //send to backend
-            User currUser = new User(personName, personEmail, personLocation, personNumber);
-            FirestoreHelper firestore = new FirestoreHelper();
-            firestore.doLogin(personId, currUser);
 
             nameTV.setText("Name: " + personName);
             emailTV.setText("Email: " + personEmail);
@@ -66,7 +63,18 @@ public class Loginpage2 extends AppCompatActivity {
         }
         main_page.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(Loginpage2.this, MainActivity.class);
+                String personName = acct.getDisplayName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+                LoginDetails.get(getApplicationContext()).SetID(personId);
+                String personLocation = locationTV.getText().toString();
+                String personNumber = numberTV.getText().toString();
+                //send to backend
+                User currUser = new User(personName, personEmail, personLocation, personNumber);
+                FirestoreHelper firestore = new FirestoreHelper();
+                firestore.doLogin(personId, currUser);
+
+                Intent intent = new Intent(Loginpage2.this, MainListActivity.class);
                 startActivity(intent);
             }
         });

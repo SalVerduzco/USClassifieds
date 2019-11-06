@@ -21,6 +21,7 @@ public class LoginDetails {
         if (singleton == null){
             singleton = new LoginDetails(context);
         }
+
         return singleton;
     }
 

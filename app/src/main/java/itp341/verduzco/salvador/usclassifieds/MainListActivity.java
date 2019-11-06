@@ -15,6 +15,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.List;
 
 public class MainListActivity extends AppCompatActivity {

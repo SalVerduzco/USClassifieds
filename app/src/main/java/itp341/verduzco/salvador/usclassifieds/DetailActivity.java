@@ -55,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         //findViews
-        editSeller = (EditText) findViewById(R.id.edit_seller); //name
+        //editSeller = (EditText) findViewById(R.id.edit_seller); //name
         editLocation = (EditText) findViewById(R.id.edit_location); //address
         editDescription = (EditText) findViewById(R.id.edit_description); //city
         spinnerState = (Spinner) findViewById(R.id.spinner_state); // update

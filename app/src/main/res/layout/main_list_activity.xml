@@ -27,6 +27,11 @@
             android:id="@+id/button_add"
             android:layout_weight="1"
             android:layout_gravity="top" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profile"></Button>
     </LinearLayout>
 
     <LinearLayout
@@ -61,7 +66,7 @@
                 android:id="@+id/radio_furniture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Clothing"
+                android:text="Furniture"
                 android:onClick="onRadioButtonClicked"></RadioButton>
         </RadioGroup>
     </LinearLayout>

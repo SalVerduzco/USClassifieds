@@ -20,11 +20,11 @@
     <string name="label_website">Website</string>
     <string name="label_address">Location</string>
     <string name="label_city">Description</string>
-    <string name="label_state">State</string>
+    <string name="label_state">Category</string>
     <string name="label_zip">Title</string>
     <string name="label_rating">Rating</string>
     <string name="label_save">Save</string>
-    <string name="label_welcome">Find cheap items sold by fellow Trojans!</string>
+    <string name="label_welcome">Sold by fellow Trojans!</string>
     <string name="label_add">Sell</string>
     <string name="label_delete">Delete</string>
     <string name="title_activity_login_page">LoginPage</string>

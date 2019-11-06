@@ -19,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,14 @@ public class LoginPage extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         signInButton.setOnClickListener((view) -> { signIn();});
+
+        Button button = findViewById(R.id.cheatThrough);
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(LoginPage.this, MainListActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
     }
     private void signIn(){
         Intent signInIntent= mGoogleSignInClient.getSignInIntent();

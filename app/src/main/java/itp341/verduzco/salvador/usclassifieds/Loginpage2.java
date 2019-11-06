@@ -20,6 +20,7 @@ public class Loginpage2 extends AppCompatActivity {
     Button sign_out;
     TextView nameTV;
     TextView emailTV;
+    TextView idTV;
     GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -31,6 +32,7 @@ public class Loginpage2 extends AppCompatActivity {
         sign_out = findViewById(R.id.log_out);
         nameTV = findViewById(R.id.name);
         emailTV = findViewById(R.id.email);
+        idTV =findViewById(R.id.id);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -44,9 +46,11 @@ public class Loginpage2 extends AppCompatActivity {
             String personGivenName = acct.getGivenName();
             String personFamilyName = acct.getFamilyName();
             String personEmail = acct.getEmail();
+            String personId = acct.getId();
 
             nameTV.setText("Name: " + personName);
             emailTV.setText("Email: " + personEmail);
+            idTV.setText("ID: "+ personId);
 
         }
         main_page.setOnClickListener(new View.OnClickListener(){

@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,21 +14,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.*;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class UpdateProfile extends AppCompatActivity {
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     Button updateButton;
     Button mainPageButton;
-    EditText nameEdit;
-    EditText emailEdit;
-    EditText phoneEdit;
-    //this store all the users
-    ArrayList<User> allUsers;
+    TextView name;
+    TextView email;
+    EditText locationEdit;
+    EditText numberEdit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
+
+        name = findViewById(R.id.name);
+        email = findViewById(R.id.email);
+        locationEdit = findViewById(R.id.edit_location);
+        numberEdit = findViewById(R.id.edit_number);
 
         Button button = findViewById(R.id.button_MainPage);
         button.setOnClickListener(new View.OnClickListener(){
@@ -40,18 +43,8 @@ public class UpdateProfile extends AppCompatActivity {
         });
     }
     public void onClickAddUser(View view) {
-        DatabaseReference myRef = database.getReference();
-        updateButton = (Button)findViewById(R.id.button_Update);
-        nameEdit   = (EditText)findViewById(R.id.editProfileName);
-        emailEdit   = (EditText)findViewById(R.id.editProfileEmail);
-        phoneEdit   = (EditText)findViewById(R.id.editProfilePhone);
 
-        User newUser = new User(nameEdit.getText().toString(),emailEdit.getText().toString(), "",phoneEdit.getText().toString());
-        allUsers.add(newUser);
-        Map<String, Object> mymap = new HashMap<>();
 
-        mymap.put(nameEdit.getText().toString(), newUser);
-        myRef.child(nameEdit.getText().toString()).setValue(mymap);
     }
 
     public void onClickReturntoMain(View view) {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UpdateProfile">
-
+    ​
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -14,88 +14,87 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        ​
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+            ​
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:background="@color/cardview_light_background"
                 android:orientation="vertical">
-
+                ​
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="45dp"
                     android:src="@drawable/profile_blank" />
-
-                <EditText
-                    android:id="@+id/editProfileName"
+                ​
+                <TextView
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="Enter your name"
+                    android:text="First Last"
                     android:textColor="#000000"
                     android:textSize="21sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </RelativeLayout>
-
+        ​
     </LinearLayout>
-
+    ​
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="298dp"
-        android:layout_height="147dp"
+        android:layout_width="246dp"
+        android:layout_height="246dp"
         android:layout_gravity="center"
-        android:layout_marginStart="78dp"
-        android:layout_marginEnd="35dp"
         android:layout_marginBottom="21dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button_Update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
+        ​
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="25dp">
-
+            ​
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/email_icon" />
-
-            <EditText
-                android:id="@+id/editProfileEmail"
+            ​
+            <TextView
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="enter your email"
-                android:textStyle="bold" />
+                android:text="TEST@gmail.com"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
         </LinearLayout>
-
+        ​
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:orientation="horizontal"
             android:paddingLeft="25dp">
-
+            ​
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/phone_icon" />
-
+            ​
             <EditText
-                android:id="@+id/editProfilePhone"
+                android:id="@+id/edit_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -103,9 +102,32 @@
                 android:text="enter your phone"
                 android:textStyle="bold" />
         </LinearLayout>
-
+        ​
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
+            ​
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/location_icon" />
+            ​
+            <EditText
+                android:id="@+id/edit_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="enter your location"
+                android:textStyle="bold" />
+            ​
+        </LinearLayout>
+        ​
     </LinearLayout>
-
+    ​
     <Button
         android:id="@+id/button_MainPage"
         android:layout_width="wrap_content"
@@ -121,9 +143,10 @@
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_Update" />
-
+    ​
     <Button
         android:id="@+id/button_Update"
         android:layout_width="wrap_content"
@@ -142,5 +165,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
+    ​
 </androidx.constraintlayout.widget.ConstraintLayout>

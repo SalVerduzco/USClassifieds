@@ -25,6 +25,8 @@ public class Loginpage2 extends AppCompatActivity {
     TextView idTV;
     EditText locationTV;
     EditText numberTV;
+    String personName;
+    String personEmail;
     GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -37,8 +39,8 @@ public class Loginpage2 extends AppCompatActivity {
         nameTV = findViewById(R.id.name);
         emailTV = findViewById(R.id.email);
         idTV =findViewById(R.id.id);
-        locationTV = (EditText)findViewById(R.id.edit_location);
-        numberTV = (EditText)findViewById(R.id.edit_number);
+        locationTV = findViewById(R.id.edit_location);
+        numberTV = findViewById(R.id.edit_number);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -48,10 +50,10 @@ public class Loginpage2 extends AppCompatActivity {
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(Loginpage2.this);
         if(acct!= null){
-            String personName = acct.getDisplayName();
+            personName = acct.getDisplayName();
             String personGivenName = acct.getGivenName();
             String personFamilyName = acct.getFamilyName();
-            String personEmail = acct.getEmail();
+            personEmail = acct.getEmail();
             String personId = acct.getId();
 
             nameTV.setText("Name: " + personName);

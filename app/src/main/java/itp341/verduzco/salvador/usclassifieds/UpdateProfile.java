@@ -31,6 +31,13 @@ public class UpdateProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
+
+        Button button = findViewById(R.id.button_MainPage);
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                finish();
+            }
+        });
     }
     public void onClickAddUser(View view) {
         DatabaseReference myRef = database.getReference();
@@ -51,7 +58,7 @@ public class UpdateProfile extends AppCompatActivity {
         mainPageButton = (Button)findViewById(R.id.button_MainPage);
         mainPageButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(UpdateProfile.this, MainActivity.class);
+                Intent intent = new Intent(UpdateProfile.this, MainListActivity.class);
                 startActivity(intent);
             }
         });

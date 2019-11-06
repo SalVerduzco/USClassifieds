@@ -28,10 +28,8 @@ public class MainListActivity extends AppCompatActivity {
 
     public static final String TAG = MainListActivity.class.getSimpleName();
     private FirestoreHelper firestoreHelper;
-
     private List<Item> mItems;
     private ItemListAdapter mItemListAdapter;
-
     private Button buttonAdd;
     private ListView itemList;
     public String category = "all";
@@ -78,6 +76,14 @@ public class MainListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, "mButtonadd: onClick ");
                 Intent intent = new Intent(MainListActivity.this, DetailActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
+        Button button = findViewById(R.id.button_profile);
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainListActivity.this, UpdateProfile.class);
                 startActivityForResult(intent, 0);
             }
         });

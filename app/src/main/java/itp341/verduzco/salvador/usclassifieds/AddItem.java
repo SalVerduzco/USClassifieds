@@ -56,7 +56,7 @@ public class AddItem extends AppCompatActivity {
                 title.getText().toString(),
                 price.getText().toString(),
                 seller.getText().toString(),
-                true
+                ""
         );
 
         firestoreHelper.addItem(item, new FirestoreHelper.FirestoreHelperListener() {

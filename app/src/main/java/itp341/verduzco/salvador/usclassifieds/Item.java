@@ -12,29 +12,31 @@ public class Item {
     private String title;
     private String price;
     private String userId;
+    private String category;
     private String picture_url;
     private boolean is_available;
 
-    public Item() {
-        super();
-    }
+//    public Item() {
+//        super();
+//    }
+//
+//    Item(EditText description, EditText location, EditText title, EditText price, TextView seller) {
+//        this.description = description.getText().toString();
+//        this.location = location.getText().toString();
+//        this.title = title.getText().toString();
+//        this.price = title.getText().toString();
+//        this.userId = seller.getText().toString();
+//    }
 
-    Item(EditText description, EditText location, EditText title, EditText price, TextView seller) {
-        this.description = description.getText().toString();
-        this.location = location.getText().toString();
-        this.title = title.getText().toString();
-        this.price = title.getText().toString();
-        this.userId = seller.getText().toString();
-    }
-
-    public Item(String description, String location, String title, String price, String userId, boolean is_available) {
+    public Item(String description, String location, String title, String price, String category, String userId) {
         this.description = description;
         this.location = location;
         this.title = title;
         this.price = price;
         this.userId = userId;
+        this.category = category;
         this.picture_url = "default";
-        this.is_available = is_available;
+        this.is_available = true;
     }
 
     public String getDescription() {
@@ -91,5 +93,13 @@ public class Item {
 
     public void setIs_available(boolean is_available) {
         this.is_available = is_available;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

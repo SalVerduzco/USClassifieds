@@ -7,13 +7,13 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class Item {
-    public String description;
-    public String location;
-    public String title;
-    public String price;
-    public String userId;
-    public String picture_url;
-    public boolean is_available;
+    private String description;
+    private String location;
+    private String title;
+    private String price;
+    private String userId;
+    private String picture_url;
+    private boolean is_available;
 
     public Item() {
         super();

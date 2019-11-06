@@ -76,7 +76,7 @@ public class AddItem extends AppCompatActivity {
 
         // go back to the main activity
         Intent k = new Intent(this, MainActivity.class);
-        k.putExtra("title", item.title);
+        k.putExtra("title", item.getTitle());
         startActivity(k);
     }
 }

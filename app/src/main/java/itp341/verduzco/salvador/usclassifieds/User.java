@@ -7,12 +7,14 @@ import java.util.List;
 
 @IgnoreExtraProperties
 public class User {
-    public String name;
-    public String location;
-    public String phone;
-    public String email;
-    public String description;
-    public String picture_url;
+    private String name;
+    private String location;
+    private String phone;
+    private String email;
+    private String description;
+    private String picture_url;
+    private List<String> requests;
+    private List<String> friends;
 
     public User(String name, String email, String location, String phone) {
         this.name = name;
@@ -77,6 +79,13 @@ public class User {
         this.picture_url = picture_url;
     }
 
+    public List<String> getRequests() {
+        return this.requests;
+    }
+
+    public List<String> getFriends() {
+        return this.friends;
+    }
 
     /*public List<String> previouslySold;
     public List<String> currentlySelling;

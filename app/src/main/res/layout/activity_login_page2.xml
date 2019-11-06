@@ -60,7 +60,7 @@
                 android:layout_gravity="fill_horizontal"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:ems="6"
-                android:inputType="textCapWords"
+                android:inputType="textMultiLine"
                 android:maxLines="1" />
 
             <TextView
@@ -75,7 +75,7 @@
                 android:layout_gravity="fill_horizontal"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:ems="6"
-                android:inputType="textCapWords"
+                android:inputType="textMultiLine"
                 android:maxLines="1" />
         </GridLayout>
 

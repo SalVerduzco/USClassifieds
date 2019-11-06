@@ -93,7 +93,7 @@ public class MainListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Log.d(TAG, "listView: onListItemClick");
-                Intent intent = new Intent(MainListActivity.this, DetailActivity.class);
+                Intent intent = new Intent(MainListActivity.this, ViewItem.class);
                 intent.putExtra(DetailActivity.EXTRA_POSITION, position);
                 startActivityForResult(intent, 0);
             }
@@ -143,8 +143,7 @@ public class MainListActivity extends AppCompatActivity {
         }
 
         if(!old_category.equalsIgnoreCase(category)){
-            ItemSingleton.get(this).parse(category);
-            mItemListAdapter.notifyDataSetChanged();
+
         }
     }
 

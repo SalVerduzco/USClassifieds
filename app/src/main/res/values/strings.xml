@@ -26,7 +26,7 @@
     <string name="label_save">Sell</string>
     <string name="label_welcome">Sold by fellow Trojans!</string>
     <string name="label_add">Sell</string>
-    <string name="label_delete">Delete</string>
+    <string name="label_delete">Back</string>
     <string name="title_activity_login_page">LoginPage</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_update_profile">UpdateProfile</string>

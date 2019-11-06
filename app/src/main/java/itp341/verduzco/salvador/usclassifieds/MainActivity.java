@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        try {
+        /*try {
             Bundle extras = getIntent().getExtras();
             String title = extras.get("title").toString();
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         } catch(Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
         Button button = findViewById(R.id.send_buy);
         button.setOnClickListener(new View.OnClickListener(){

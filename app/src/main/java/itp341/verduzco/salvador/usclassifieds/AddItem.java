@@ -28,7 +28,7 @@ import android.widget.ListView;
 
 public class AddItem extends AppCompatActivity {
     private static String TAG = "AddItem";
-    private FirebaseFirestore firebaseFirestore;
+    private FirestoreHelper firestoreHelper;
 
     ArrayList<String> listItems = new ArrayList<String>();
 
@@ -39,7 +39,7 @@ public class AddItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
-        firebaseFirestore = FirebaseFirestore.getInstance();
+        firestoreHelper = new FirestoreHelper();
     }
 
     public void onClickSendInfo(View view) {
@@ -59,24 +59,22 @@ public class AddItem extends AppCompatActivity {
                 true
         );
 
-        firebaseFirestore.collection("Items")
-                .add(item)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "DocumentSnapshot failed");
-                    }
-                });
+        firestoreHelper.addItem(item, new FirestoreHelper.FirestoreHelperListener() {
+            @Override
+            public void success() {
+                System.out.println("UEYEUDI");
+                // go back to the main activity
+                Intent k = new Intent(AddItem.this, MainActivity.class);
+                k.putExtra("title", item.getTitle());
+                startActivity(k);
+            }
 
-        // go back to the main activity
-        Intent k = new Intent(this, MainActivity.class);
-        k.putExtra("title", item.getTitle());
-        startActivity(k);
+            @Override
+            public void failure() {
+                System.out.println("FAILLED");
+            }
+        });
+
+
     }
 }

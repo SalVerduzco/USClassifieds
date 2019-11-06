@@ -66,16 +66,12 @@ public class Loginpage2 extends AppCompatActivity {
                 String personId = acct.getId();
                 String personLocation = locationTV.getText().toString();
                 String personNumber = numberTV.getText().toString();
-
-                Log.v("LoginPage2", "Location is " +personLocation);
-                Log.v("LoginPage2", "Number is " + personNumber);
-
                 //send to backend
                 User currUser = new User(personName, personEmail, personLocation, personNumber);
                 FirestoreHelper firestore = new FirestoreHelper();
                 firestore.doLogin(personId, currUser);
 
-                Intent intent = new Intent(Loginpage2.this, MainActivity.class);
+                Intent intent = new Intent(Loginpage2.this, MainListActivity.class);
                 startActivity(intent);
             }
         });

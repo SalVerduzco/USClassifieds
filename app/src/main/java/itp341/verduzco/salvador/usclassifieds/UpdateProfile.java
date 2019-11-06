@@ -2,6 +2,7 @@ package itp341.verduzco.salvador.usclassifieds;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -35,6 +36,9 @@ public class UpdateProfile extends AppCompatActivity {
         locationEdit = findViewById(R.id.edit_location);
         numberEdit = findViewById(R.id.edit_number);
 
+//        String personID = LoginDetails.get(getApplicationContext()).GetID();
+//        Log.e("UpdateProfile", personID);
+
         Button button = findViewById(R.id.button_MainPage);
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
@@ -43,6 +47,7 @@ public class UpdateProfile extends AppCompatActivity {
         });
     }
     public void onClickAddUser(View view) {
+
 
 
     }

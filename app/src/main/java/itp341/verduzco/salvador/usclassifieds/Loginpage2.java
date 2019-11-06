@@ -66,6 +66,7 @@ public class Loginpage2 extends AppCompatActivity {
                 String personName = acct.getDisplayName();
                 String personEmail = acct.getEmail();
                 String personId = acct.getId();
+                LoginDetails.get(getApplicationContext()).SetID(personId);
                 String personLocation = locationTV.getText().toString();
                 String personNumber = numberTV.getText().toString();
                 //send to backend

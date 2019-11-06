@@ -28,7 +28,7 @@ public class LoginDetails {
         this.userID = userID;
     }
 
-    public String GetID(String ID){
+    public String GetID(){
         return this.userID;
     }
 

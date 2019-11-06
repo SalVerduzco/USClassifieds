@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
@@ -20,8 +22,7 @@ import java.util.Map;
 public class DetailActivity extends AppCompatActivity {
 
     public static final String TAG = DetailActivity.class.getSimpleName();
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-
+    private FirestoreHelper firestoreHelper;
 
     //TODO how will we pass data from MainList?
     public static final String EXTRA_POSITION = DetailActivity.class.getPackage().getName() + "extra_position";
@@ -45,6 +46,7 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_activity);
+        firestoreHelper = new FirestoreHelper();
 
         //TODO get intent data
         Intent intent = getIntent();
@@ -118,25 +120,31 @@ public class DetailActivity extends AppCompatActivity {
     private void saveAndClose() {
         Log.d(TAG, "saveAndClose");
 
-//        DatabaseReference myRef = database.getReference();
+        Item item = new Item(
+                editDescription.getText().toString(),
+                editLocation.getText().toString(),
+                editTitle.getText().toString(),
+                editPrice.getText().toString(),
+                "all",
+                "TEST"
+        );
 
-        Item item = new Item();
-        item.setUserId(editSeller.getText().toString());
-        item.setLocation(editLocation.getText().toString());
-        item.setTitle(editTitle.getText().toString());
-        item.setPrice(editPrice.getText().toString());
-        item.setDescription(editDescription.getText().toString());
-        //item.setCategory(spinnerState.getSelectedItem().toString());
+        firestoreHelper.addItem(item, new FirestoreHelper.FirestoreHelperListener() {
+            @Override
+            public void success() {
+
+            }
+            @Override
+            public void failure() {
+
+            }
+        });
 
         if (position == -1){
             ItemSingleton.get(this).addItem(item);
         } else {
             ItemSingleton.get(this).updateItem(position, item);
         }
-
-//        Map<String, Object> mymap = new HashMap<>();
-//        mymap.put(item.getTitle(), item);
-//        myRef.child(item.getTitle()).setValue(mymap);
 
         finish();
     }

@@ -9,7 +9,7 @@ public class LoginDetails {
 
     private static LoginDetails singleton;
     private Context context;
-    private String email;
+    private String userID;
 
     //TODO private singleton constructor
     private LoginDetails(Context context){
@@ -24,12 +24,12 @@ public class LoginDetails {
         return singleton;
     }
 
-    public void SetEmail(String email){
-        this.email = email;
+    public void SetID(String ID){
+        this.userID = userID;
     }
 
-    public String GetEmail(String email){
-        return this.email;
+    public String GetID(String ID){
+        return this.userID;
     }
 
 }

@@ -1,5 +1,6 @@
 package itp341.verduzco.salvador.usclassifieds;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,9 +35,11 @@ public class MainListActivity extends AppCompatActivity {
     private Button buttonAdd;
     private ListView itemList;
     public String category = "all";
+    public Context CURRENT_CONTEXT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        CURRENT_CONTEXT = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_list_activity);
         Log.d(TAG, "onCreate");
@@ -63,6 +66,8 @@ public class MainListActivity extends AppCompatActivity {
                 for (DocumentSnapshot snapshot: queryDocumentSnapshots) {
                     mItems.add(snapshot.toObject(Item.class));
                 }
+
+                ItemSingleton.get(CURRENT_CONTEXT).SetList(mItems);
                 mItemListAdapter.notifyDataSetChanged();
             }
         });

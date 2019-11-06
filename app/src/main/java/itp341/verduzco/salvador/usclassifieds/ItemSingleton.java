@@ -28,6 +28,10 @@ public class ItemSingleton {
         return singleton;
     }
 
+    public void SetList(List<Item> newList){
+        items = newList;
+    }
+
     public List<Item> getItems(){
         return items;
     }

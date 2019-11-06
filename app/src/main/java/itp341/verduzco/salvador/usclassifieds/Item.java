@@ -12,6 +12,7 @@ public class Item {
     private String title;
     private String price;
     private String userId;
+    private String category;
     private String picture_url;
     private boolean is_available;
 

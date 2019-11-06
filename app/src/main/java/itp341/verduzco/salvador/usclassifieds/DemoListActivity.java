@@ -42,7 +42,7 @@ public class DemoListActivity extends AppCompatActivity {
                 if(e != null) {
                     Log.d(TAG, e.getMessage());
                 }
-
+                System.out.println("HJSDBJSBDJBSJBJDSB");
                 mItems.clear();
                 for (DocumentSnapshot snapshot: queryDocumentSnapshots) {
                     mItems.add(snapshot.toObject(Item.class));

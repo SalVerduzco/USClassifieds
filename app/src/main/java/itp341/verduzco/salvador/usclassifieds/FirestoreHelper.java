@@ -7,10 +7,12 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
 
 
 public class FirestoreHelper {
@@ -19,6 +21,32 @@ public class FirestoreHelper {
 
     public FirestoreHelper() {
         this.firebaseFirestore = FirebaseFirestore.getInstance();
+    }
+
+    public void doLogin(String userId, User user) {
+        // Do this to ignore certain fields
+        HashMap<String, String> user_map = new HashMap<>();
+        user_map.put("name", user.getName());
+        user_map.put("location", user.getLocation());
+        user_map.put("description", user.getDescription());
+        user_map.put("email", user.getEmail());
+        user_map.put("phone", user.getPhone());
+
+        this.firebaseFirestore.collection("Items")
+                .document(userId)
+                .set(user_map, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "User login success for " + userId);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "User login failed for " + userId);
+                    }
+                });
     }
 
     public Query getItemsRef() {
@@ -69,5 +97,7 @@ public class FirestoreHelper {
         void success();
         void failure();
     }
+
+
 
 }

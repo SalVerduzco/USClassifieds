@@ -2,6 +2,7 @@ package itp341.verduzco.salvador.usclassifieds;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,6 +16,11 @@ public class User {
     private String picture_url;
     private List<String> requests;
     private List<String> friends;
+
+    public User() {
+        this.requests = new ArrayList<>();
+        this.friends = new ArrayList<>();
+    }
 
     public User(String name, String email, String location, String phone) {
         this.name = name;

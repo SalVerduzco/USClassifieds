@@ -35,7 +35,7 @@ public class DemoListActivity extends AppCompatActivity {
         mList = (ListView) findViewById(R.id.listView);
         mList.setAdapter(mItemListAdapter);
 
-        firestoreHelper.getItemsRef().addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firestoreHelper.getSoldItemsByUserIdRef("103151951588532023496").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 // error occured.. log it

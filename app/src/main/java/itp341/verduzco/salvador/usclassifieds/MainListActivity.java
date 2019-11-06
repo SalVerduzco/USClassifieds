@@ -88,6 +88,14 @@ public class MainListActivity extends AppCompatActivity {
             }
         });
 
+        Button history = findViewById(R.id.button_history);
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainListActivity.this, DemoListActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+
         //TODO create listview item click listener
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

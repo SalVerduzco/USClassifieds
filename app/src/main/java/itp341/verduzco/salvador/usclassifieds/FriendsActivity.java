@@ -1,10 +1,7 @@
 package itp341.verduzco.salvador.usclassifieds;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -12,11 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FriendsActivity extends AppCompatActivity {
@@ -35,28 +30,33 @@ public class FriendsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.demo_list_activity);
+        setContentView(R.layout.friends_list);
         firestoreHelper = new FirestoreHelper();
 
-        friends = new ArrayList<>();
+        //friends = new ArrayList<>();
         requests = new ArrayList<>();
 
-        friendsListAdapter = new UserListAdapter(this, friends);
+        //friendsListAdapter = new UserListAdapter(this, friends);
         requestsListAdapter = new UserListAdapter(this, requests);
 
-        requestListView = (ListView) findViewById(R.id.listview_requests);
-        friendListView = (ListView) findViewById(R.id.listview_friends);
+        requestListView = (ListView) findViewById(R.id.listView_requests);
+        //friendListView = (ListView) findViewById(R.id.listView_friends);
 
         requestListView.setAdapter(requestsListAdapter);
-        friendListView.setAdapter(friendsListAdapter);
+        //friendListView.setAdapter(friendsListAdapter);
 
-        firestoreHelper.getUserByUserIdRef("103151951588532023496").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        firestoreHelper
+                .getUserByUserIdRef(UserSingleton.getInstance(getApplicationContext()).getID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                friends = user.getFriends();
+                Log.e("HERE", user.getName());
+                Log.e("HERE", Arrays.toString(user.getRequests().toArray()));
+                //friends = user.getFriends();
                 requests = user.getRequests();
-                friendsListAdapter.notifyDataSetChanged();
+                //friendsListAdapter.notifyDataSetChanged();
                 requestsListAdapter.notifyDataSetChanged();
             }
         });

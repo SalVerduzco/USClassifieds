@@ -1,6 +1,5 @@
 package itp341.verduzco.salvador.usclassifieds;
 
-import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -101,7 +100,5 @@ public class FirestoreHelper {
         void success();
         void failure();
     }
-
-
 
 }

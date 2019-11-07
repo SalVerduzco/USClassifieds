@@ -22,7 +22,7 @@ public class UserListAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_shop3, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.user_list_item, parent, false);
         }
 
         TextView textName = convertView.findViewById(R.id.user_list_name);

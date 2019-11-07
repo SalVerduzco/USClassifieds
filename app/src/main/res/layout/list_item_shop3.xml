@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -25,45 +26,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <TextView
-                android:id="@+id/user_list_name"
+                android:id="@+id/textView_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
-                android:text="Item"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Title"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_main" />
+                app:layout_constraintTop_toBottomOf="@+id/image_main" />
 
             <TextView
-                android:id="@+id/text_title"
+                android:id="@+id/textView_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Los Angeles"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@id/text_title"
-                app:layout_constraintTop_toBottomOf="@id/text_title" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_title" />
 
             <TextView
-                android:id="@+id/text_subtitle"
+                android:id="@+id/textView_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Los Angeles"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="$10"
                 android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="@id/text_title"
-                app:layout_constraintTop_toBottomOf="@id/text_title" />
-
-
-            <ImageView
-                android:id="@+id/image_coffee_bean"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_margin="15dp"
-                android:src="@drawable/coffee_bean_filled"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_main" />
+                app:layout_constraintTop_toBottomOf="@+id/image_main" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

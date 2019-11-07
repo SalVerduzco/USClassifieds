@@ -3,7 +3,6 @@ package itp341.verduzco.salvador.usclassifieds;
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @IgnoreExtraProperties
@@ -91,6 +90,14 @@ public class User {
 
     public List<String> getFriends() {
         return this.friends;
+    }
+
+    public void setRequests(List<String> requests) {
+        this.requests = requests;
+    }
+
+    public void setFriends(List<String> friends) {
+        this.friends = friends;
     }
 
     /*public List<String> previouslySold;

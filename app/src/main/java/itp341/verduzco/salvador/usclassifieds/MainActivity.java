@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }*/
 
+
+
         Button button = findViewById(R.id.send_buy);
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){

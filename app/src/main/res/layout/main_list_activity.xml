@@ -31,8 +31,17 @@
             android:layout_height="wrap_content"
             android:text="@string/label_add"
             android:id="@+id/button_add"
+            android:layout_gravity="top"
             android:layout_weight="1"
-            android:layout_gravity="top" />
+             />
+
+        <Button
+            android:id="@+id/button_history"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="1"
+            android:text="History" />
 
         <Button
             android:id="@+id/button_profile"

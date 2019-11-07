@@ -1,21 +1,19 @@
 package itp341.verduzco.salvador.usclassifieds;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 
 public class Loginpage2 extends AppCompatActivity {
     Button main_page;
@@ -66,13 +64,14 @@ public class Loginpage2 extends AppCompatActivity {
                 String personName = acct.getDisplayName();
                 String personEmail = acct.getEmail();
                 String personId = acct.getId();
-                LoginDetails.get(getApplicationContext()).SetID(personId);
                 String personLocation = locationTV.getText().toString();
                 String personNumber = numberTV.getText().toString();
+
                 //send to backend
                 User currUser = new User(personName, personEmail, personLocation, personNumber);
                 FirestoreHelper firestore = new FirestoreHelper();
                 firestore.doLogin(personId, currUser);
+                UserSingleton.getInstance(getApplicationContext()).setID(personId);
 
                 Intent intent = new Intent(Loginpage2.this, MainListActivity.class);
                 startActivity(intent);

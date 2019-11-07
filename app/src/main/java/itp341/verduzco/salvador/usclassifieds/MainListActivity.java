@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -13,14 +12,12 @@ import android.widget.RadioButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,14 +86,14 @@ public class MainListActivity extends AppCompatActivity {
         });
 
         Button history = findViewById(R.id.button_history);
-        button.setOnClickListener(new View.OnClickListener(){
+        history.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                Intent intent = new Intent(MainListActivity.this, DemoListActivity.class);
+                Intent intent = new Intent(MainListActivity.this, ItemListActivity.class);
+                intent.putExtra("option", "sold");
                 startActivityForResult(intent, 0);
             }
         });
 
-        //TODO create listview item click listener
         itemList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

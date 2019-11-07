@@ -7,119 +7,100 @@
     tools:context=".MainActivity">
 
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="401dp"
-        android:layout_height="565dp"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="161dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <ListView
-                android:id="@+id/item_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="top"
-                android:layout_marginTop="5dp">
-            </ListView>
-        </LinearLayout>
-    </ScrollView>
-
     <Button
-        android:id="@+id/filter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/filter"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toStartOf="@+id/search_bar"
+        android:id="@+id/button_selling"
+        android:layout_width="156dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="30dp"
+        android:text="Selling Items"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
-        android:id="@+id/settings"
+        android:id="@+id/button_sold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/settings"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/search_bar"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="27dp"
+        android:text="Sold Items"
+        app:layout_constraintStart_toEndOf="@+id/button_friends"
+        app:layout_constraintTop_toBottomOf="@+id/button_selling" />
 
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginBottom="287dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/search"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toStartOf="@+id/settings"
-        app:layout_constraintStart_toEndOf="@+id/filter"
-        app:layout_constraintTop_toBottomOf="@+id/add_item" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/add_item"
+        android:id="@+id/button_friends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="64dp"
-        android:onClick="onClickAddItem"
-        android:text="@string/add_item"
-        app:layout_constraintBottom_toTopOf="@+id/search_bar"
-        app:layout_constraintEnd_toStartOf="@+id/settings"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/filter"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="27dp"
+        android:text="Friends"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_selling" />
 
     <Button
         android:id="@+id/send_buy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
         android:text="Send to buy page"
-        app:layout_constraintBottom_toTopOf="@+id/send_profile"
-        android:onClick="onClickBuyPage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_sold" />
+
 
     <Button
-        android:layout_marginTop="200dp"
         android:id="@+id/send_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="31dp"
         android:text="Send to profile page"
-        app:layout_constraintTop_toBottomOf="@+id/filter"></Button>
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_sold"/>
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="177dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="33dp"
         android:text="Go to login Page"
-        android:onClick="onClickLoginPage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/demo_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:onClick="onClickDemoPage"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="33dp"
         android:text="Demo Page"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/login" />
+
+    <TextView
+        android:layout_width="139dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="54dp"
+        android:text="Testing tool"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/send_buy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

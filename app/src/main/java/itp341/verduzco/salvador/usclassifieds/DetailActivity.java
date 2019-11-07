@@ -9,15 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -61,6 +54,7 @@ public class DetailActivity extends AppCompatActivity {
         spinnerState = (Spinner) findViewById(R.id.spinner_state); // update
         editTitle = (EditText) findViewById(R.id.edit_title); //zip
         editPrice = (EditText) findViewById(R.id.edit_price);
+
         //editWebsite = (EditText) findViewById(R.id.edit_website);
         buttonSaveListing = (Button) findViewById(R.id.button_save_listing);
         buttonDeleteListing = (Button) findViewById(R.id.button_delete_listing);
@@ -124,7 +118,7 @@ public class DetailActivity extends AppCompatActivity {
                 editTitle.getText().toString(),
                 editPrice.getText().toString(),
                 "all",
-                "TEST"
+                UserSingleton.getInstance(getApplicationContext()).getID()
         );
 
         firestoreHelper.addItem(item, new FirestoreHelper.FirestoreHelperListener() {

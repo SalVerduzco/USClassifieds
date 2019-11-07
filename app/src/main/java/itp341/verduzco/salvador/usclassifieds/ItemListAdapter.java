@@ -25,13 +25,15 @@ public class ItemListAdapter extends ArrayAdapter<Item> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item_shop3, parent, false);
         }
 
-        TextView textTitle = convertView.findViewById(R.id.text_title);
-        TextView textSubtitle = convertView.findViewById(R.id.text_subtitle);
+        TextView textTitle = convertView.findViewById(R.id.textView_title);
+        TextView textSubtitle = convertView.findViewById(R.id.textView_subtitle);
+        TextView textPrice = convertView.findViewById(R.id.textView_price);
 
         Item item = this.mItems.get(position);
 
-        textTitle.setText(item.getUserId());
+        textTitle.setText(item.getTitle());
         textSubtitle.setText(item.getDescription());
+        textPrice.setText("$" + item.getPrice());
 
         return convertView;
     }

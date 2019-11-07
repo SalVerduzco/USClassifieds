@@ -14,8 +14,8 @@
         <activity android:name=".ViewItem"></activity>
         <activity android:name=".Loginpage2" />
         <activity
-            android:name=".LoginPage"
-            android:label="@string/title_activity_login_page"
+            android:name=".MainActivity"
+            android:label="MainActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,14 +24,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".UpdateProfile" />
+        <activity android:name=".ItemListActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".FriendsActivity" />
         <activity android:name=".MainListActivity" />
-        <activity android:name=".DemoListActivity" />
-        <activity android:name=".AddItem" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".LoginPage" />
     </application>
 
 </manifest>

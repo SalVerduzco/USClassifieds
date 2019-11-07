@@ -1,7 +1,6 @@
 package itp341.verduzco.salvador.usclassifieds;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ListView;
 
 import androidx.annotation.Nullable;
@@ -11,7 +10,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FriendsActivity extends AppCompatActivity {
@@ -33,17 +31,17 @@ public class FriendsActivity extends AppCompatActivity {
         setContentView(R.layout.friends_list);
         firestoreHelper = new FirestoreHelper();
 
-        //friends = new ArrayList<>();
+        friends = new ArrayList<>();
         requests = new ArrayList<>();
 
-        //friendsListAdapter = new UserListAdapter(this, friends);
+        friendsListAdapter = new UserListAdapter(this, friends);
         requestsListAdapter = new UserListAdapter(this, requests);
 
         requestListView = (ListView) findViewById(R.id.listView_requests);
-        //friendListView = (ListView) findViewById(R.id.listView_friends);
+        friendListView = (ListView) findViewById(R.id.listView_friends);
 
         requestListView.setAdapter(requestsListAdapter);
-        //friendListView.setAdapter(friendsListAdapter);
+        friendListView.setAdapter(friendsListAdapter);
 
         firestoreHelper
                 .getUserByUserIdRef(UserSingleton.getInstance(getApplicationContext()).getID())
@@ -52,12 +50,14 @@ public class FriendsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                Log.e("HERE", user.getName());
-                Log.e("HERE", Arrays.toString(user.getRequests().toArray()));
-                //friends = user.getFriends();
-                requests = user.getRequests();
-                //friendsListAdapter.notifyDataSetChanged();
+
+                requests.clear();
+                requests.addAll(user.getRequests());
                 requestsListAdapter.notifyDataSetChanged();
+
+                friends.clear();
+                friends.addAll(user.getFriends());
+                friendsListAdapter.notifyDataSetChanged();
             }
         });
     }

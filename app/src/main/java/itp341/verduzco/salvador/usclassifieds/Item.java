@@ -2,6 +2,7 @@ package itp341.verduzco.salvador.usclassifieds;
 
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,8 +32,9 @@ public class Item {
         this.is_available = true;
 
         // keywords are auto-generated for search
+        searchable_keywords = new ArrayList<>();
         if (title != null) {
-            this.searchable_keywords = Arrays.asList(title.toLowerCase().split(" "));
+            this.searchable_keywords.addAll(Arrays.asList(title.toLowerCase().split(" ")));
             this.searchable_keywords.add(category.toLowerCase());
         }
     }

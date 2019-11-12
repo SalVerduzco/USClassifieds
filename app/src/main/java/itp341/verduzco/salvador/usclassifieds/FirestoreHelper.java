@@ -11,7 +11,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class FirestoreHelper {
@@ -52,6 +54,10 @@ public class FirestoreHelper {
         return this.firebaseFirestore.collection("Items");
     }
 
+    public DocumentReference getItemByItemIdRef(String itemId) {
+        return this.firebaseFirestore.collection("Items").document(itemId);
+    }
+
     public DocumentReference getUserByUserIdRef(String userId) {
         return this.firebaseFirestore.collection("Users").document(userId);
     }
@@ -59,6 +65,15 @@ public class FirestoreHelper {
     public Query getUserByEmailRef(String email) {
         return this.firebaseFirestore.collection("Users")
                 .whereEqualTo("email", email);
+    }
+
+    public Query getItemsBySearchRef(String search) {
+        List<String> keywords = Arrays.asList(search.toLowerCase().split(" "));
+        return this.getItemsRef()
+                .whereArrayContains(
+                    "searchable_keywords",
+                    keywords
+                );
     }
 
     public Query getSellingItemsByUserIdRef(String userId) {
@@ -73,7 +88,7 @@ public class FirestoreHelper {
                 .whereEqualTo("is_available", false);
     }
 
-    public Query getItemByCategory(String category) {
+    public Query getItemByCategoryRef(String category) {
         return this.getItemsRef().whereEqualTo("category", category);
     }
 

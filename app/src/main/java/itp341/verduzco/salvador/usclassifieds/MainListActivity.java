@@ -1,6 +1,5 @@
 package itp341.verduzco.salvador.usclassifieds;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,19 +21,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainListActivity extends AppCompatActivity {
-
     public static final String TAG = MainListActivity.class.getSimpleName();
     private FirestoreHelper firestoreHelper;
+
     private List<Item> mItems;
+    private List<String> mItemKeys;
+
     private ItemListAdapter mItemListAdapter;
+    public String category = "all";
+
     private Button buttonAdd;
     private ListView itemList;
-    public String category = "all";
-    public Context CURRENT_CONTEXT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        CURRENT_CONTEXT = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_list_activity);
         Log.d(TAG, "onCreate");
@@ -46,6 +46,8 @@ public class MainListActivity extends AppCompatActivity {
         firestoreHelper = new FirestoreHelper();
 
         mItems = new ArrayList<>();
+        mItemKeys = new ArrayList<>();
+
         mItemListAdapter = new ItemListAdapter(this, mItems);
         itemList.setAdapter(mItemListAdapter);
 
@@ -58,16 +60,16 @@ public class MainListActivity extends AppCompatActivity {
                 }
 
                 mItems.clear();
+                mItemKeys.clear();
                 for (DocumentSnapshot snapshot: queryDocumentSnapshots) {
                     mItems.add(snapshot.toObject(Item.class));
+                    mItemKeys.add(snapshot.getId());
                 }
 
-                ItemSingleton.get(CURRENT_CONTEXT).SetList(mItems);
                 mItemListAdapter.notifyDataSetChanged();
             }
         });
 
-        //TODO What happens when user clicks add?
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +101,7 @@ public class MainListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Log.d(TAG, "listView: onListItemClick");
                 Intent intent = new Intent(MainListActivity.this, ViewItem.class);
-                intent.putExtra(DetailActivity.EXTRA_POSITION, position);
+                intent.putExtra("itemId", mItemKeys.get(position));
                 startActivityForResult(intent, 0);
             }
         });
@@ -110,11 +112,8 @@ public class MainListActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         Log.d(TAG, "onActivityResult: requestCode: " + requestCode);
-
         mItemListAdapter.notifyDataSetChanged();
-
     }
 
     public void onRadioButtonClicked(View view) {

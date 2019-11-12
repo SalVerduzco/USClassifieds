@@ -65,8 +65,6 @@ public class DetailActivity extends AppCompatActivity {
 
         spinnerState.setAdapter(spinnerAdapter);
 
-
-
         // format phone edit text
         editPrice.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
@@ -117,7 +115,7 @@ public class DetailActivity extends AppCompatActivity {
                 editLocation.getText().toString(),
                 editTitle.getText().toString(),
                 editPrice.getText().toString(),
-                "all",
+                spinnerState.getSelectedItem().toString(),
                 UserSingleton.getInstance(getApplicationContext()).getID()
         );
 

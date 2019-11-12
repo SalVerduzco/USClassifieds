@@ -1,9 +1,9 @@
 package itp341.verduzco.salvador.usclassifieds;
 
-import android.widget.EditText;
-import android.widget.TextView;
-
 import com.google.firebase.firestore.IgnoreExtraProperties;
+
+import java.util.Arrays;
+import java.util.List;
 
 @IgnoreExtraProperties
 public class Item {
@@ -15,6 +15,7 @@ public class Item {
     private String category;
     private String picture_url;
     private boolean is_available;
+    private List<String> searchable_keywords;
 
     public Item() {
     }
@@ -28,6 +29,12 @@ public class Item {
         this.category = category;
         this.picture_url = "default";
         this.is_available = true;
+
+        // keywords are auto-generated for search
+        if (title != null) {
+            this.searchable_keywords = Arrays.asList(title.toLowerCase().split(" "));
+            this.searchable_keywords.add(category.toLowerCase());
+        }
     }
 
     public String getDescription() {
@@ -92,5 +99,9 @@ public class Item {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public List<String> getSearchable_keywords() {
+        return searchable_keywords;
     }
 }

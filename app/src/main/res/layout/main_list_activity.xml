@@ -21,12 +21,19 @@
             android:padding="8dp"/>
 
         <Button
-            android:id="@+id/button_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/sendN"
+            android:text="Friends"></Button>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_add"
+            android:id="@+id/button_add"
             android:layout_gravity="top"
             android:layout_weight="1"
-            android:text="@string/label_add" />
+             />
 
         <Button
             android:id="@+id/button_history"

@@ -72,7 +72,6 @@ public class UpdateProfile extends AppCompatActivity {
                 String newPhone = numberEdit.getText().toString();
                 user.setLocation(newLocation);
                 user.setPhone(newPhone);
-
                 Intent intent = new Intent(UpdateProfile.this, MainListActivity.class);
                 startActivity(intent);
             }

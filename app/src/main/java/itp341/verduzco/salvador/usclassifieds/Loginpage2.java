@@ -49,8 +49,6 @@ public class Loginpage2 extends AppCompatActivity {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(Loginpage2.this);
         if(acct!= null){
             personName = acct.getDisplayName();
-            String personGivenName = acct.getGivenName();
-            String personFamilyName = acct.getFamilyName();
             personEmail = acct.getEmail();
             String personId = acct.getId();
 

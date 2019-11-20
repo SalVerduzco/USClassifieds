@@ -3,6 +3,8 @@ package itp341.verduzco.salvador.usclassifieds;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ public class ItemListActivity extends AppCompatActivity {
     private FirestoreHelper firestoreHelper;
 
     private List<Item> mItems;
+    private List<String> mItemKeys;
     private ItemListAdapter mItemListAdapter;
 
     private TextView textViewTitle;
@@ -57,6 +60,7 @@ public class ItemListActivity extends AppCompatActivity {
         }
 
         mItems = new ArrayList<>();
+        mItemKeys = new ArrayList<>();
         mItemListAdapter = new ItemListAdapter(this, mItems);
 
         mList.setAdapter(mItemListAdapter);
@@ -68,11 +72,23 @@ public class ItemListActivity extends AppCompatActivity {
                 if(e != null) {
                     Log.d(TAG, e.getMessage());
                 }
+                mItemKeys.clear();
                 mItems.clear();
                 for (DocumentSnapshot snapshot: queryDocumentSnapshots) {
+                    mItemKeys.add(snapshot.getId());
                     mItems.add(snapshot.toObject(Item.class));
                 }
                 mItemListAdapter.notifyDataSetChanged();
+            }
+        });
+
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Log.d(TAG, "listView: onListItemClick");
+                Intent intent = new Intent(ItemListActivity.this, ViewItem.class);
+                intent.putExtra("itemId", mItemKeys.get(position));
+                startActivityForResult(intent, 0);
             }
         });
     }

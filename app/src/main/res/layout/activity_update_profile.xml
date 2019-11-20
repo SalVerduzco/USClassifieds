@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="336dp"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,6 @@
         android:layout_width="246dp"
         android:layout_height="246dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="21dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button_Update"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,20 +70,43 @@
                 android:src="@drawable/email_icon" />
             ​
             <TextView
-                android:id="@+id/email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:text="TEST@gmail.com"
-                android:textStyle="bold"
-                android:textColor="#000000"/>
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="TEST@gmail.com"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
         </LinearLayout>
         ​
         <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="25dp">
+        ​
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/phone_icon" />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="prev number"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:paddingLeft="25dp">
             ​
@@ -92,21 +114,46 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/phone_icon" />
-            ​
+
             <EditText
                 android:id="@+id/edit_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="enter your phone"
-                android:textStyle="bold" />
+                android:text="Edit phone"
+                android:inputType = "number"
+                android:textStyle="italic" />
+
         </LinearLayout>
+
+        ​<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="25dp">
         ​
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/location_icon" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="prev location"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:paddingLeft="25dp">
             ​
@@ -121,8 +168,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="enter your location"
-                android:textStyle="bold" />
+                android:text="Edit location"
+                android:textStyle="italic" />
             ​
         </LinearLayout>
         ​
@@ -134,7 +181,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="153dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="152dp"
         android:layout_marginBottom="52dp"
         android:background="@drawable/profile_button"
@@ -153,7 +200,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="161dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="162dp"
         android:layout_marginBottom="21dp"
         android:background="@drawable/profile_button"

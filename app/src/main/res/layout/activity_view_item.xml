@@ -83,21 +83,30 @@
         android:id="@+id/edit_title"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:ems="5"
-        android:inputType="number"
         android:maxLength="5"
         android:maxLines="1" />
 
+<!--    <TextView-->
+<!--        android:id="@+id/text_state"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+<!--        android:text="@string/label_state"-->
+<!--        android:textStyle="bold" />-->
+
     <TextView
-        android:id="@+id/text_state"
-        android:layout_gravity="center_vertical"
+        android:id="@+id/category_label"
+        android:layout_gravity="left"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:text="@string/label_state"
+        android:text="Category"
         android:textStyle="bold" />
 
-    <Spinner
-        android:id="@+id/spinner_state"
-        android:layout_gravity="top"
-        android:layout_marginRight="@dimen/activity_horizontal_margin" />
+    <TextView
+        android:id="@+id/category_text"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:ems="5"
+        android:maxLength="5"
+        android:maxLines="1" />
+
 
 
 </GridLayout>

@@ -22,7 +22,7 @@ public class ViewItem extends AppCompatActivity {
     private TextView editDescription;
     private TextView editTitle;
     private TextView editPrice;
-    private Spinner spinnerState;
+    private TextView spinnerState;
     ArrayAdapter<CharSequence> spinnerAdapter;
 
     @Override
@@ -41,13 +41,13 @@ public class ViewItem extends AppCompatActivity {
         editDescription = findViewById(R.id.edit_description);
         editTitle = findViewById(R.id.edit_title);
         editPrice = findViewById(R.id.edit_price);
-        spinnerState = (Spinner) findViewById(R.id.spinner_state);
+        spinnerState = findViewById(R.id.category_text);
 
         spinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.states,
                 android.R.layout.simple_spinner_item);
 
-        spinnerState.setAdapter(spinnerAdapter);
+        //spinnerState.setAdapter(spinnerAdapter);
 
         firestoreHelper
                 .getItemByItemIdRef(itemId)
@@ -60,9 +60,10 @@ public class ViewItem extends AppCompatActivity {
                         editPrice.setText(item.getPrice());
                         editDescription.setText(item.getDescription());
                         editTitle.setText(item.getTitle());
-                        Log.e(TAG, item.getCategory());
-                        Log.e(TAG, "" + spinnerAdapter.getPosition(item.getCategory()));
-                        spinnerState.setSelection(spinnerAdapter.getPosition(item.getCategory()));
+                        spinnerState.setText(item.getCategory());
+                        //Log.e(TAG, item.getCategory());
+                        //Log.e(TAG, "" + spinnerAdapter.getPosition(item.getCategory()));
+                        //spinnerState.setSelection(spinnerAdapter.getPosition(item.getCategory()));
                     }
                 });
     }

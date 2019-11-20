@@ -11,10 +11,10 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-public class UserListAdapter extends ArrayAdapter<String> {
-    private List<String> mUsers;
+public class UserListAdapter extends ArrayAdapter<User> {
+    private List<User> mUsers;
 
-    public UserListAdapter(@NonNull Context context, List<String> users) {
+    public UserListAdapter(@NonNull Context context, List<User> users) {
         super(context, R.layout.user_list_item, users);
         this.mUsers = users;
     }
@@ -27,7 +27,7 @@ public class UserListAdapter extends ArrayAdapter<String> {
 
         TextView textName = convertView.findViewById(R.id.user_list_name);
 
-        String user = this.mUsers.get(position);
+        String user = this.mUsers.get(position).getName();
 
         textName.setText(user);
 

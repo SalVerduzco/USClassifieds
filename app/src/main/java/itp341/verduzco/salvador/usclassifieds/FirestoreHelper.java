@@ -67,6 +67,64 @@ public class FirestoreHelper {
                 .whereEqualTo("email", email);
     }
 
+    public Query getFriendsByUserIdRef(String userId) {
+        return this.firebaseFirestore.collection("Users")
+                .whereArrayContains("friends", userId);
+    }
+
+    public Query getRequestsByUserIdRef(String userId) {
+        return this.firebaseFirestore.collection("Users")
+                .whereArrayContains("requested", userId);
+    }
+
+    private void updateFriendStatusForUser(User user, String userId, FirestoreHelperListener listener) {
+        HashMap<String, List<String>> user_map = new HashMap<>();
+        user_map.put("friends", user.getFriends());
+        user_map.put("requested", user.getRequested());
+
+        this.firebaseFirestore.collection("Users")
+                .document(userId)
+                .set(user_map, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Friend request success for " + userId);
+                        listener.success();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "Friend request failed for " + userId);
+                        listener.failure();
+                    }
+                });
+    }
+
+    public void sendFriendRequest(User user, String userId, String friendUserId, FirestoreHelperListener listener) {
+        user.addRequested(friendUserId);
+        this.updateFriendStatusForUser(user, userId, listener);
+    }
+
+    public void acceptFriendRequest(User user, String userId, User friend, String friendUserId, FirestoreHelperListener listener) {
+        friend.removeRequested(userId);
+        friend.addFriend(userId);
+        user.addFriend(friendUserId);
+
+        this.updateFriendStatusForUser(user, userId, listener);
+        this.updateFriendStatusForUser(friend, friendUserId, listener);
+    }
+
+    public void removeFriend(User user, String userId, User friend, String friendUserId, FirestoreHelperListener listener) {
+        friend.removeRequested(userId);
+        friend.removeFriend(userId);
+        user.removeRequested(friendUserId);
+        user.removeFriend(friendUserId);
+
+        this.updateFriendStatusForUser(user, userId, listener);
+        this.updateFriendStatusForUser(friend, friendUserId, listener);
+    }
+
     public Query getItemsBySearchRef(String search) {
         List<String> keywords = Arrays.asList(search.toLowerCase().split(" "));
         return this.getItemsRef()
@@ -90,6 +148,30 @@ public class FirestoreHelper {
 
     public Query getItemByCategoryRef(String category) {
         return this.getItemsRef().whereEqualTo("category", category);
+    }
+
+    public void markItemAsSold(String itemId, FirestoreHelperListener firestoreHelperListener) {
+        // Do this to ignore certain fields
+        HashMap<String, Boolean> item_map = new HashMap<>();
+        item_map.put("is_available", false);
+
+        this.firebaseFirestore.collection("Items")
+                .document(itemId)
+                .set(item_map, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Item sold success for " + itemId);
+                        firestoreHelperListener.success();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "Item sold failed for " + itemId);
+                        firestoreHelperListener.failure();
+                    }
+                });
     }
 
     public void addItem(Item item, FirestoreHelperListener listener) {

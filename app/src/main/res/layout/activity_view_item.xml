@@ -108,5 +108,16 @@
         android:maxLines="1" />
 
 
+    <Button
+        android:id="@+id/button_mark_sold"
+        android:layout_gravity="left"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Mark Sold" />
+
+    <Button
+        android:id="@+id/button_show_seller"
+        android:layout_gravity="left"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Show seller" />
 
 </GridLayout>

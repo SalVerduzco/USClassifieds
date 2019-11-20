@@ -13,11 +13,11 @@ public class User {
     private String email;
     private String description;
     private String picture_url;
-    private List<String> requests;
+    private List<String> requested;
     private List<String> friends;
 
     public User() {
-        this.requests = new ArrayList<>();
+        this.requested = new ArrayList<>();
         this.friends = new ArrayList<>();
     }
 
@@ -84,51 +84,32 @@ public class User {
         this.picture_url = picture_url;
     }
 
-    public List<String> getRequests() {
-        return this.requests;
+    public List<String> getRequested() {
+        return this.requested;
     }
 
     public List<String> getFriends() {
         return this.friends;
     }
 
-    public void setRequests(List<String> requests) {
-        this.requests = requests;
+    public void setRequested(List<String> requested) {
+        this.requested = requested;
     }
 
-    public void setFriends(List<String> friends) {
-        this.friends = friends;
+    public void addRequested(String id) {
+        this.requested.add(id);
     }
 
-    /*public List<String> previouslySold;
-    public List<String> currentlySelling;
-    public List<String> friends;
-    public List<String> pendingFriends;*/
+    public void removeRequested(String id) {
+        this.requested.remove(id);
+    }
 
-    /*
-    public void addToPreviouslySold(String id) {
-        this.previouslySold.add(id);
+    public void addFriend(String id) {
+        this.friends.add(id);
     }
-    public void addToCurrentlySelling(String id) {
-        this.currentlySelling.add(id);
+
+    public void removeFriend(String id) {
+        this.friends.remove(id);
     }
-    public void removeFromCurrentlySelling(String id) {
-        this.currentlySelling.remove(this.currentlySelling.indexOf(id));
-    }
-    public void editPhone(String newNum) {
-        this.phone = newNum;
-    }
-    public void addFriend(String friend) {
-        this.friends.add(friend);
-    }
-    public void removeFriend(String friend) {
-        this.friends.remove(this.friends.indexOf(friend));
-    }
-    public void sendFriendRequest(String potentialFriend) {
-        this.pendingFriends.add(potentialFriend);
-    }
-    public void removeFriendRequest(String user) {
-        this.pendingFriends.remove(this.pendingFriends.indexOf(user));
-    }*/
 
 }

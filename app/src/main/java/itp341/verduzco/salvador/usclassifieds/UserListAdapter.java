@@ -16,7 +16,7 @@ public class UserListAdapter extends ArrayAdapter<String> {
 
     public UserListAdapter(@NonNull Context context, List<String> users) {
         super(context, R.layout.user_list_item, users);
-        this.mUsers = mUsers;
+        this.mUsers = users;
     }
 
     @Override

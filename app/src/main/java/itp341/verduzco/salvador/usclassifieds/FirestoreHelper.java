@@ -125,12 +125,21 @@ public class FirestoreHelper {
         this.updateFriendStatusForUser(friend, friendUserId, listener);
     }
 
+//    public Query getItemsBySearchRef(String search) {
+//        List<String> keywords = Arrays.asList(search.toLowerCase().split(" "));
+//        return this.getItemsRef()
+//                .whereArrayContains(
+//                    "searchable_keywords",
+//                    keywords
+//                );
+//    }
+
     public Query getItemsBySearchRef(String search) {
         List<String> keywords = Arrays.asList(search.toLowerCase().split(" "));
         return this.getItemsRef()
-                .whereArrayContains(
-                    "searchable_keywords",
-                    keywords
+                .whereArrayContainsAny(
+                        "searchable_keywords",
+                        keywords
                 );
     }
 

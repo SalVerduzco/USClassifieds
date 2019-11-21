@@ -123,7 +123,8 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -141,5 +142,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView"
-        android:background="#00BCD4"/>
+        />
 </LinearLayout>

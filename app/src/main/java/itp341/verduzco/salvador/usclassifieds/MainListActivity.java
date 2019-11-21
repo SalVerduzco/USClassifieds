@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +19,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainListActivity extends AppCompatActivity {
@@ -29,14 +35,20 @@ public class MainListActivity extends AppCompatActivity {
 
     private ItemListAdapter mItemListAdapter;
     public String category = "all";
+    private ArrayAdapter<CharSequence> spinnerAdapter;
 
     private Button buttonAdd;
     private ListView itemList;
+    private Spinner priceSpinner;
+    private Button searchButton;
 
     private Button sendToFriend;
+    private EditText editString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.e("create","create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_list_activity);
         Log.d(TAG, "onCreate");
@@ -45,6 +57,53 @@ public class MainListActivity extends AppCompatActivity {
         buttonAdd = (Button) findViewById(R.id.button_add);
         itemList = (ListView) findViewById(R.id.listView);
         sendToFriend = findViewById(R.id.sendToFriendsButton);
+        priceSpinner = findViewById(R.id.price_spinner);
+        searchButton = findViewById(R.id.searchButton);
+        editString = findViewById(R.id.editSearch);
+
+
+
+        spinnerAdapter = ArrayAdapter.createFromResource(this,
+                R.array.sortByArray,
+                android.R.layout.simple_spinner_item);
+
+        priceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id){
+                Log.e(TAG, priceSpinner.getSelectedItem().toString());
+                if(!priceSpinner.getSelectedItem().toString().equalsIgnoreCase("Low to High")){
+                    Log.e(TAG, "if statem.");
+                    Collections.sort(mItems, new Comparator<Item>(){
+                        public int compare(Item obj1, Item obj2) {
+                            return Integer.valueOf(obj2.getPrice()).compareTo(Integer.valueOf(obj1.getPrice()));
+                        }
+                    });
+
+                } else {
+
+                    Collections.sort(mItems, new Comparator<Item>(){
+                        public int compare(Item obj1, Item obj2) {
+                            return Integer.valueOf(obj1.getPrice()).compareTo(Integer.valueOf(obj2.getPrice()));
+                        }
+                    });
+
+                }
+
+                /* Now fix keys */
+                mItemKeys.clear();
+                for(Item i : mItems){
+                    mItemKeys.add(i.id);
+                }
+                mItemListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView){
+
+            }
+        });
+
+        priceSpinner.setAdapter(spinnerAdapter);
 
         firestoreHelper = new FirestoreHelper();
 
@@ -65,7 +124,9 @@ public class MainListActivity extends AppCompatActivity {
                 mItems.clear();
                 mItemKeys.clear();
                 for (DocumentSnapshot snapshot: queryDocumentSnapshots) {
-                    mItems.add(snapshot.toObject(Item.class));
+                    Item newItem = snapshot.toObject(Item.class);
+                    newItem.id = snapshot.getId();
+                    mItems.add(newItem);
                     mItemKeys.add(snapshot.getId());
                 }
 
@@ -125,6 +186,40 @@ public class MainListActivity extends AppCompatActivity {
             }
         });
 
+        searchButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                String searchString = editString.getText().toString();
+                Log.e(TAG, searchString);
+                if(searchString.length()==0){
+                    Log.e(TAG, "empty search");
+                    return;
+                }
+
+                /* Update List by the query */
+                Query query = firestoreHelper.getItemsRef();
+                query = firestoreHelper.getItemsBySearchRef(searchString);
+                query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        // error occured.. log it
+                        if(e != null) {
+                            Log.e(TAG, e.getMessage());
+                        }
+                        mItemKeys.clear();
+                        mItems.clear();
+                        for (DocumentSnapshot snapshot: queryDocumentSnapshots) {
+                            Item newItem = snapshot.toObject(Item.class);
+                            newItem.id = snapshot.getId();
+                            mItems.add(newItem);
+                            mItemKeys.add(snapshot.getId());
+                        }
+                        mItemListAdapter.notifyDataSetChanged();
+                    }
+                });
+
+            }
+        });
+
     }
 
     //TODO finish onActivityResult
@@ -145,29 +240,74 @@ public class MainListActivity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.radio_books:
                 if (checked){
-                    category = "books";
+                    category = "Books";
                 }
                     break;
             case R.id.radio_electronics:
                 if (checked){
-                    category = "electronics";
+                    category = "Electronics";
                 }
                     break;
             case R.id.radio_furniture:
                 if (checked){
-                    category = "furniture";
+                    category = "Furniture";
                 }
                     break;
             case R.id.radio_clothing:
                 if (checked){
-                    category = "clothing";
+                    category = "Clothing";
                 }
                     break;
         }
 
-        if(!old_category.equalsIgnoreCase(category)){
+        /* Update our list by the category */
+        Query query = firestoreHelper.getItemsRef();
+        query = firestoreHelper.getItemByCategoryRef(category);
+        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                // error occured.. log it
+                Log.e(TAG, "Test");
+                if(e != null) {
+                    Log.e(TAG, e.getMessage());
+                }
+                mItemKeys.clear();
+                mItems.clear();
+                for (DocumentSnapshot snapshot: queryDocumentSnapshots) {
+                    Item newItem = snapshot.toObject(Item.class);
+                    newItem.id = snapshot.getId();
+                    mItems.add(newItem);
+                    mItemKeys.add(snapshot.getId());
+                }
 
-        }
+                if(!priceSpinner.getSelectedItem().toString().equalsIgnoreCase("Low to High")){
+                    Log.e(TAG, "if statem.");
+                    Collections.sort(mItems, new Comparator<Item>(){
+                        public int compare(Item obj1, Item obj2) {
+                            return Integer.valueOf(obj2.getPrice()).compareTo(Integer.valueOf(obj1.getPrice()));
+                        }
+                    });
+
+                } else {
+
+                    Collections.sort(mItems, new Comparator<Item>(){
+                        public int compare(Item obj1, Item obj2) {
+                            return Integer.valueOf(obj1.getPrice()).compareTo(Integer.valueOf(obj2.getPrice()));
+                        }
+                    });
+
+                }
+
+                /* Now fix keys */
+                mItemKeys.clear();
+                for(Item i : mItems){
+                    mItemKeys.add(i.id);
+                }
+                mItemListAdapter.notifyDataSetChanged();
+
+                mItemListAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
 

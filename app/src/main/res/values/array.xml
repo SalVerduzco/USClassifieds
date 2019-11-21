@@ -8,4 +8,9 @@
         <item>Furniture</item>
     </string-array>
 
+    <string-array name="sortByArray">
+        <item> Low to High </item>
+        <item> High to Low </item>
+    </string-array>
+
 </resources>

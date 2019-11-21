@@ -8,6 +8,7 @@ import java.util.List;
 
 @IgnoreExtraProperties
 public class Item {
+    public String id;
     private String description;
     private String location;
     private String title;
@@ -17,6 +18,7 @@ public class Item {
     private String picture_url;
     private boolean is_available;
     private List<String> searchable_keywords;
+
 
     public Item() {
     }

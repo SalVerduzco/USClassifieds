@@ -33,6 +33,8 @@ public class MainListActivity extends AppCompatActivity {
     private Button buttonAdd;
     private ListView itemList;
 
+    private Button sendToFriend;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,7 @@ public class MainListActivity extends AppCompatActivity {
         // Find views
         buttonAdd = (Button) findViewById(R.id.button_add);
         itemList = (ListView) findViewById(R.id.listView);
+        sendToFriend = findViewById(R.id.sendToFriendsButton);
 
         firestoreHelper = new FirestoreHelper();
 
@@ -93,6 +96,22 @@ public class MainListActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainListActivity.this, ItemListActivity.class);
                 intent.putExtra("option", "sold");
                 startActivityForResult(intent, 0);
+            }
+        });
+
+        Button button_selling = findViewById(R.id.MySellingButton);
+        button_selling.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainListActivity.this, ItemListActivity.class);
+                intent.putExtra("option", "selling");
+                startActivity(intent);
+            }
+        });
+
+        sendToFriend.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainListActivity.this, FriendsActivity.class);
+                startActivity(intent);
             }
         });
 

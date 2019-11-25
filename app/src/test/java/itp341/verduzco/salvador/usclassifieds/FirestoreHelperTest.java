@@ -12,6 +12,10 @@ public class FirestoreHelperTest {
     public static final String TAG = FirestoreHelper.class.getSimpleName();
     private FirebaseFirestore firebaseFirestore;
 
+    public FirestoreHelperTest() {
+        this.firebaseFirestore = FirebaseFirestore.getInstance();
+    }
+
     @Test
     public void getItemsRefTest() {
 

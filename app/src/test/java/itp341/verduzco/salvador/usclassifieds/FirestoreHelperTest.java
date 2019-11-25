@@ -7,10 +7,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 
@@ -19,6 +21,8 @@ import static org.junit.Assert.*;
 public class FirestoreHelperTest {
     public static final String TAG = FirestoreHelper.class.getSimpleName();
     private FirebaseFirestore firebaseFirestore;
+    public FirestoreHelper.FirestoreHelperListener listener;
+    public FirestoreHelper firestoreHelper;
 
     Item item;
     String description;
@@ -42,10 +46,22 @@ public class FirestoreHelperTest {
         id = null;
 
         firebaseFirestore = FirebaseFirestore.getInstance();
+        listener = new FirestoreHelper.FirestoreHelperListener() {
+            @Override
+            public void success() {
+                System.out.println("success");
+            }
+
+            @Override
+            public void failure() {
+                System.out.println("success");
+            }
+        };
+        firestoreHelper = new FirestoreHelper();
     }
 
     @Test
-    public void getItemsRefTest() {
+    public void getItemByItemIDRefTest() {
         this.firebaseFirestore.collection("Items")
                 .add(item)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -61,9 +77,43 @@ public class FirestoreHelperTest {
                         Log.d(TAG, "Item create failed.");
                     }
                 });
+
+        DocumentSnapshot document = firestoreHelper.getItemByItemIdRef(id).get().getResult();
+        Item myItem = document.toObject(Item.class);
+
+        assertEquals(myItem, item);
+    }
+
+    @Test
+    public void addItemTest() {
+        firestoreHelper.addItem(item, listener);
+
+        DocumentSnapshot document = firestoreHelper.getItemByItemIdRef(id).get().getResult();
+        Item myItem = document.toObject(Item.class);
+
+        assertEquals(myItem, item);
+    }
+
+    @Test
+    public void markItemAsSoldTest() {
+        firestoreHelper.markItemAsSold(id, listener);
+
         DocumentSnapshot document = this.firebaseFirestore.collection("Items").document(id).get().getResult();
         Item myItem = document.toObject(Item.class);
 
-        assertEquals(item, myItem);
+        assertFalse(myItem.isIs_available());
+    }
+
+    @Test
+    public void getUserByUserIDRef() {
+        User user = new User("hubba", "hubba@hubba.com","Los Angeles", "1234567890");
+        String userID = "3o827t84gufn3iyr";
+        firestoreHelper.doLogin(userID, user);
+
+
+        DocumentSnapshot document = firestoreHelper.getUserByUserIdRef(userID).get().getResult();
+        User myUser = document.toObject(User.class);
+
+        assertEquals(myUser, user);
     }
 }

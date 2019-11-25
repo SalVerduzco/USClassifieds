@@ -68,7 +68,7 @@ public class TestUser {
     }
 
     @Test
-    public void testSetpictureUrl(){
+    public void testSetPictureUrl(){
         User testuser = new User("Tony", "Tony@gmail.com", "Los Angeles", "123");
         testuser.setPictureUrl("tonyprofile.png");
         assertEquals("tonyprofile.png", testuser.getPictureUrl());

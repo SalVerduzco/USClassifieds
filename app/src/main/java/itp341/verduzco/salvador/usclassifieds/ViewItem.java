@@ -41,6 +41,8 @@ public class ViewItem extends AppCompatActivity {
             itemId = intent.getStringExtra("itemId");
         }
 
+        Log.e(TAG, itemId);
+
         // Find Views
         editLocation = findViewById(R.id.edit_location);
         editDescription = findViewById(R.id.edit_description);

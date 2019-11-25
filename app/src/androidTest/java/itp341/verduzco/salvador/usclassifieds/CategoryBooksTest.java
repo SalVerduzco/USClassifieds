@@ -14,7 +14,6 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,13 +43,7 @@ public class CategoryBooksTest {
                 allOf(withId(R.id.LoggingIn),
                         childAtPosition(
                                 childAtPosition(
-                                        allOf(withId(android.R.id.content),
-                                                childAtPosition(
-                                                        allOf(withId(R.id.action_bar_root),
-                                                                childAtPosition(
-                                                                        withClassName(is("android.widget.FrameLayout")),
-                                                                        0)),
-                                                        1)),
+                                        withId(android.R.id.content),
                                         0),
                                 2),
                         isDisplayed()));
@@ -60,44 +53,38 @@ public class CategoryBooksTest {
                 allOf(withId(R.id.radio_books), withText("Books"),
                         childAtPosition(
                                 childAtPosition(
-                                        childAtPosition(
-                                                childAtPosition(
-                                                        withId(android.R.id.content),
-                                                        0),
-                                                3),
+                                        withClassName(is("android.widget.LinearLayout")),
                                         1),
                                 0),
                         isDisplayed()));
         appCompatRadioButton.perform(click());
 
+        // Make sure firebase fetches the data
+        try { Thread.sleep(4000); } catch (InterruptedException ie) { }
+
         DataInteraction frameLayout = onData(anything())
                 .inAdapterView(allOf(withId(R.id.listView),
                         childAtPosition(
-                                childAtPosition(
-                                        allOf(withId(android.R.id.content),
-                                                childAtPosition(
-                                                        withId(R.id.decor_content_parent),
-                                                        0)),
-                                        0),
+                                withClassName(is("android.widget.LinearLayout")),
                                 5)))
                 .atPosition(0);
         frameLayout.perform(click());
 
+        // Make sure firebase fetches the data
+        try { Thread.sleep(4000); } catch (InterruptedException ie) { }
+
         ViewInteraction textView = onView(
-                allOf(withId(R.id.category_text), withText("Books"),
+                allOf(withId(R.id.category_text),
                         childAtPosition(
                                 allOf(withId(R.id.GridLayout1),
                                         childAtPosition(
-                                                allOf(withId(android.R.id.content),
-                                                        childAtPosition(
-                                                                allOf(withId(R.id.decor_content_parent),
-                                                                        childAtPosition(
-                                                                                IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
-                                                                                0)),
-                                                                1)),
+                                                withId(android.R.id.content),
                                                 0)),
                                 9),
                         isDisplayed()));
+
+        // Make sure firebase fetches the data
+        try { Thread.sleep(4000); } catch (InterruptedException ie) { }
         textView.check(matches(withText("Books")));
     }
 

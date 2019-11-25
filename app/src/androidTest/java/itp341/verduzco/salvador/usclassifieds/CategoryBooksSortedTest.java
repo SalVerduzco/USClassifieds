@@ -1,6 +1,5 @@
 package itp341.verduzco.salvador.usclassifieds;
 
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -32,13 +31,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CategoryClothingTest {
+public class CategoryBooksSortedTest {
 
     @Rule
     public ActivityTestRule<LoginPage> mActivityTestRule = new ActivityTestRule<>(LoginPage.class);
 
     @Test
-    public void categoryClothingTest() {
+    public void categoryBooksSortedTest() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.LoggingIn),
                         childAtPosition(
@@ -50,17 +49,34 @@ public class CategoryClothingTest {
         appCompatButton.perform(click());
 
         ViewInteraction appCompatRadioButton = onView(
-                allOf(withId(R.id.radio_clothing), withText("Clothing"),
+                allOf(withId(R.id.radio_books), withText("Books"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
                                         1),
-                                2),
+                                0),
                         isDisplayed()));
         appCompatRadioButton.perform(click());
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
+
+        ViewInteraction appCompatSpinner = onView(
+                allOf(withId(R.id.price_spinner),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        4),
+                                1),
+                        isDisplayed()));
+        appCompatSpinner.perform(click());
+
+        DataInteraction appCompatTextView = onData(anything())
+                .inAdapterView(childAtPosition(
+                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
+                        0))
+                .atPosition(1);
+        appCompatTextView.perform(click());
 
         DataInteraction frameLayout = onData(anything())
                 .inAdapterView(allOf(withId(R.id.listView),
@@ -72,6 +88,7 @@ public class CategoryClothingTest {
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
+
         ViewInteraction textView = onView(
                 allOf(withId(R.id.category_text),
                         childAtPosition(
@@ -84,7 +101,20 @@ public class CategoryClothingTest {
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
-        textView.check(matches(withText("Clothing")));
+        textView.check(matches(withText("Books")));
+
+        ViewInteraction textView2 = onView(
+                allOf(withId(R.id.edit_price),
+                        childAtPosition(
+                                allOf(withId(R.id.GridLayout1),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                1),
+                        isDisplayed()));
+
+        try { Thread.sleep(4000); } catch (InterruptedException ie) { }
+        textView2.check(matches(withText("999")));
     }
 
     private static Matcher<View> childAtPosition(
@@ -106,3 +136,4 @@ public class CategoryClothingTest {
         };
     }
 }
+

@@ -32,13 +32,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CategoryClothingTest {
+public class SellingItemsTest {
 
     @Rule
     public ActivityTestRule<LoginPage> mActivityTestRule = new ActivityTestRule<>(LoginPage.class);
 
     @Test
-    public void categoryClothingTest() {
+    public void sellingItemsTest() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.LoggingIn),
                         childAtPosition(
@@ -49,42 +49,57 @@ public class CategoryClothingTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        ViewInteraction appCompatRadioButton = onView(
-                allOf(withId(R.id.radio_clothing), withText("Clothing"),
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.MySellingButton), withText("My Items"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
-                                        1),
-                                2),
+                                        0),
+                                0),
                         isDisplayed()));
-        appCompatRadioButton.perform(click());
+        appCompatButton2.perform(click());
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
 
         DataInteraction frameLayout = onData(anything())
-                .inAdapterView(allOf(withId(R.id.listView),
+                .inAdapterView(allOf(withId(R.id.listView_user_items),
                         childAtPosition(
-                                withClassName(is("android.widget.LinearLayout")),
-                                5)))
+                                withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
+                                1)))
                 .atPosition(0);
         frameLayout.perform(click());
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.category_text),
+
+        ViewInteraction button = onView(
+                allOf(withId(R.id.button_mark_sold),
                         childAtPosition(
                                 allOf(withId(R.id.GridLayout1),
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                9),
+                                12),
                         isDisplayed()));
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
-        textView.check(matches(withText("Clothing")));
+        button.check(matches(isDisplayed()));
+
+        ViewInteraction textView = onView(
+                allOf(withId(R.id.availability_text),
+                        childAtPosition(
+                                allOf(withId(R.id.GridLayout1),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                11),
+                        isDisplayed()));
+
+        // Make sure firebase fetches the data
+        try { Thread.sleep(4000); } catch (InterruptedException ie) { }
+        textView.check(matches(withText("Yes")));
     }
 
     private static Matcher<View> childAtPosition(

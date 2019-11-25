@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +25,7 @@ public class ViewItem extends AppCompatActivity {
     private TextView editTitle;
     private TextView editPrice;
     private TextView spinnerState;
+    private TextView availability;
     private Button markSoldButton;
     private Button showSellerButton;
     ArrayAdapter<CharSequence> spinnerAdapter;
@@ -49,6 +49,7 @@ public class ViewItem extends AppCompatActivity {
         editTitle = findViewById(R.id.edit_title);
         editPrice = findViewById(R.id.edit_price);
         spinnerState = findViewById(R.id.category_text);
+        availability = (TextView) findViewById(R.id.availability_text);
         markSoldButton = (Button) findViewById(R.id.button_mark_sold);
         showSellerButton = (Button) findViewById(R.id.button_show_seller);
 
@@ -70,6 +71,11 @@ public class ViewItem extends AppCompatActivity {
                         editDescription.setText(item.getDescription());
                         editTitle.setText(item.getTitle());
                         spinnerState.setText(item.getCategory());
+                        if (item.isIs_available()) {
+                            availability.setText("Yes");
+                        } else {
+                            availability.setText("No");
+                        }
 
                         Log.e(TAG, item.getCategory());
                         //Log.e(TAG, "" + spinnerAdapter.getPosition(item.getCategory()));

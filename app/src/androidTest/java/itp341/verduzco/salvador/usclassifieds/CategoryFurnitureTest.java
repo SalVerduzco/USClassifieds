@@ -32,13 +32,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CategoryClothingTest {
+public class CategoryFurnitureTest {
 
     @Rule
     public ActivityTestRule<LoginPage> mActivityTestRule = new ActivityTestRule<>(LoginPage.class);
 
     @Test
-    public void categoryClothingTest() {
+    public void categoryFurnitureTest() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.LoggingIn),
                         childAtPosition(
@@ -50,12 +50,12 @@ public class CategoryClothingTest {
         appCompatButton.perform(click());
 
         ViewInteraction appCompatRadioButton = onView(
-                allOf(withId(R.id.radio_clothing), withText("Clothing"),
+                allOf(withId(R.id.radio_furniture), withText("Furniture"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
                                         1),
-                                2),
+                                3),
                         isDisplayed()));
         appCompatRadioButton.perform(click());
 
@@ -84,7 +84,7 @@ public class CategoryClothingTest {
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
-        textView.check(matches(withText("Clothing")));
+        textView.check(matches(withText("Furniture")));
     }
 
     private static Matcher<View> childAtPosition(

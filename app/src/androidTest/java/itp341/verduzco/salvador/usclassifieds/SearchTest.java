@@ -21,6 +21,8 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
@@ -32,13 +34,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CategoryClothingTest {
+public class SearchTest {
 
     @Rule
     public ActivityTestRule<LoginPage> mActivityTestRule = new ActivityTestRule<>(LoginPage.class);
 
     @Test
-    public void categoryClothingTest() {
+    public void searchTest() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.LoggingIn),
                         childAtPosition(
@@ -49,19 +51,28 @@ public class CategoryClothingTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        ViewInteraction appCompatRadioButton = onView(
-                allOf(withId(R.id.radio_clothing), withText("Clothing"),
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.editSearch),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
-                                        1),
-                                2),
+                                        2),
+                                0),
                         isDisplayed()));
-        appCompatRadioButton.perform(click());
+        appCompatEditText.perform(replaceText("test"), closeSoftKeyboard());
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.searchButton), withText("Search"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        2),
+                                1),
+                        isDisplayed()));
+        appCompatButton2.perform(click());
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
-
         DataInteraction frameLayout = onData(anything())
                 .inAdapterView(allOf(withId(R.id.listView),
                         childAtPosition(
@@ -72,19 +83,20 @@ public class CategoryClothingTest {
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
+
         ViewInteraction textView = onView(
-                allOf(withId(R.id.category_text),
+                allOf(withId(R.id.edit_title),
                         childAtPosition(
                                 allOf(withId(R.id.GridLayout1),
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                9),
+                                7),
                         isDisplayed()));
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
-        textView.check(matches(withText("Clothing")));
+        textView.check(matches(withText("test")));
     }
 
     private static Matcher<View> childAtPosition(

@@ -14,6 +14,7 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,13 +33,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CategoryClothingTest {
+public class FriendshipTest {
 
     @Rule
     public ActivityTestRule<LoginPage> mActivityTestRule = new ActivityTestRule<>(LoginPage.class);
 
     @Test
-    public void categoryClothingTest() {
+    public void friendshipTest() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.LoggingIn),
                         childAtPosition(
@@ -49,42 +50,42 @@ public class CategoryClothingTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        ViewInteraction appCompatRadioButton = onView(
-                allOf(withId(R.id.radio_clothing), withText("Clothing"),
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.sendToFriendsButton), withText("Friends"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
-                                        1),
-                                2),
+                                        0),
+                                1),
                         isDisplayed()));
-        appCompatRadioButton.perform(click());
+        appCompatButton2.perform(click());
 
         // Make sure firebase fetches the data
-        try { Thread.sleep(4000); } catch (InterruptedException ie) { }
+        try { Thread.sleep(6000); } catch (InterruptedException ie) { }
 
         DataInteraction frameLayout = onData(anything())
-                .inAdapterView(allOf(withId(R.id.listView),
+                .inAdapterView(allOf(withId(R.id.listView_friends),
                         childAtPosition(
-                                withClassName(is("android.widget.LinearLayout")),
-                                5)))
+                                withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
+                                3)))
                 .atPosition(0);
         frameLayout.perform(click());
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
+
         ViewInteraction textView = onView(
-                allOf(withId(R.id.category_text),
+                allOf(withId(R.id.textView_status),
                         childAtPosition(
-                                allOf(withId(R.id.GridLayout1),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                9),
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.RelativeLayout.class),
+                                        0),
+                                2),
                         isDisplayed()));
 
         // Make sure firebase fetches the data
         try { Thread.sleep(4000); } catch (InterruptedException ie) { }
-        textView.check(matches(withText("Clothing")));
+        textView.check(matches(withText("Friends")));
     }
 
     private static Matcher<View> childAtPosition(

@@ -20,27 +20,12 @@
 
     <TextView
         android:id="@+id/edit_price"
+        android:layout_width="wrap_content"
         android:layout_gravity="left"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:ems="10"
         android:inputType="phone"
-        android:maxLength="14"
         android:maxLines="1" />
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/text_thoughts"-->
-    <!--        android:layout_gravity="left"-->
-    <!--        android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
-    <!--        android:text="@string/label_website"-->
-    <!--        android:textStyle="bold" />-->
-
-    <!--    <EditText-->
-    <!--        android:id="@+id/edit_website"-->
-    <!--        android:layout_gravity="fill_horizontal"-->
-    <!--        android:layout_marginRight="@dimen/activity_horizontal_margin"-->
-    <!--        android:ems="6"-->
-    <!--        android:inputType="textUri"-->
-    <!--        android:maxLines="1" />-->
 
     <TextView
         android:id="@+id/text_address"
@@ -51,6 +36,7 @@
 
     <TextView
         android:id="@+id/edit_location"
+        android:layout_width="wrap_content"
         android:layout_gravity="fill_horizontal"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:ems="6"
@@ -66,6 +52,7 @@
 
     <TextView
         android:id="@+id/edit_description"
+        android:layout_width="wrap_content"
         android:layout_gravity="fill_horizontal"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:ems="6"
@@ -81,17 +68,11 @@
 
     <TextView
         android:id="@+id/edit_title"
+        android:layout_width="wrap_content"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:ems="5"
-        android:maxLength="5"
         android:maxLines="1" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/text_state"-->
-<!--        android:layout_gravity="center_vertical"-->
-<!--        android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
-<!--        android:text="@string/label_state"-->
-<!--        android:textStyle="bold" />-->
 
     <TextView
         android:id="@+id/category_label"
@@ -102,9 +83,23 @@
 
     <TextView
         android:id="@+id/category_text"
+        android:layout_width="wrap_content"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:ems="5"
-        android:maxLength="5"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/availability_label"
+        android:layout_gravity="left"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="Available"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/availability_text"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:ems="5"
         android:maxLines="1" />
 
 

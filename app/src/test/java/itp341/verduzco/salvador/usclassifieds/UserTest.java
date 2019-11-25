@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TestUser {
+public class UserTest {
     @Test
     public void testGetName() {
         User testuser = new User("Tony", "Tony@gmail.com", "Los Angeles", "123");
@@ -196,10 +196,9 @@ public class TestUser {
     }
 
     @Test
-    public void removeFriendEmpty(){
+    public void testFriendEmpty(){
         User testuser = new User();
         testuser.removeFriend("123");
         assertTrue(testuser.getFriends().isEmpty());
     }
-
 }

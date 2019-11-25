@@ -196,7 +196,7 @@ public class TestUser {
     }
 
     @Test
-    public void removeFriendEmpty(){
+    public void testFriendEmpty(){
         User testuser = new User();
         testuser.removeFriend("123");
         assertTrue(testuser.getFriends().isEmpty());

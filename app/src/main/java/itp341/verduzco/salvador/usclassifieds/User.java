@@ -68,19 +68,9 @@ public class User {
         this.description = description;
     }
 
-    public String getPictureUrl() {
-        return picture_url;
-    }
+    public String getPictureUrl() { return picture_url; }
 
     public void setPictureUrl(String picture_url) {
-        this.picture_url = picture_url;
-    }
-
-    public String getPicture_url() {
-        return picture_url;
-    }
-
-    public void setPicture_url(String picture_url) {
         this.picture_url = picture_url;
     }
 
@@ -100,16 +90,12 @@ public class User {
         this.requested.add(id);
     }
 
-    public void removeRequested(String id) {
-        this.requested.remove(id);
-    }
+    public void removeRequested(String id) { this.requested.remove(id); }
 
     public void addFriend(String id) {
         this.friends.add(id);
     }
 
-    public void removeFriend(String id) {
-        this.friends.remove(id);
-    }
+    public void removeFriend(String id) { this.friends.remove(id); }
 
 }

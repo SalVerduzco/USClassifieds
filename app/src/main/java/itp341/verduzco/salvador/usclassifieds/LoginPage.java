@@ -48,13 +48,14 @@ public class LoginPage extends AppCompatActivity {
 
         signInButton.setOnClickListener((view) -> { signIn();});
 
-//        Button button = findViewById(R.id.cheatThrough);
-//        button.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View view){
-//                Intent intent = new Intent(LoginPage.this, MainListActivity.class);
-//                startActivityForResult(intent, 0);
-//            }
-//        });
+        Button button = findViewById(R.id.LoggingIn);
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                UserSingleton.getInstance(getApplicationContext()).setID("TESTUSER");
+                Intent intent = new Intent(LoginPage.this, MainListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     private void signIn(){
         Intent signInIntent= mGoogleSignInClient.getSignInIntent();

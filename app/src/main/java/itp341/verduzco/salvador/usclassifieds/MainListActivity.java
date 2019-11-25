@@ -182,7 +182,7 @@ public class MainListActivity extends AppCompatActivity {
                 Log.d(TAG, "listView: onListItemClick");
                 Intent intent = new Intent(MainListActivity.this, ViewItem.class);
                 intent.putExtra("itemId", mItemKeys.get(position));
-                startActivityForResult(intent, 0);
+                startActivity(intent);
             }
         });
 

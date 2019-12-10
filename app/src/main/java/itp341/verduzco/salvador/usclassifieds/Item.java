@@ -39,6 +39,14 @@ public class Item {
             this.searchable_keywords.addAll(Arrays.asList(title.toLowerCase().split(" ")));
             this.searchable_keywords.add(category.toLowerCase());
         }
+
+        if (location != null) {
+            this.searchable_keywords.addAll(Arrays.asList(location.toLowerCase().split(" ")));
+        }
+
+        if (price != null) {
+            this.searchable_keywords.add(price.toLowerCase());
+        }
     }
 
     public String getDescription() {

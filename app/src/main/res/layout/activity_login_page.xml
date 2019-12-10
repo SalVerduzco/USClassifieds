@@ -24,9 +24,8 @@
         android:layout_marginLeft="150dp" />
 
     <Button
-        android:layout_width="1dp"
-        android:layout_height="1dp"
         android:id="@+id/LoggingIn"
-        ></Button>
+        android:layout_width="1dp"
+        android:layout_height="1dp"></Button>
 
 </LinearLayout>

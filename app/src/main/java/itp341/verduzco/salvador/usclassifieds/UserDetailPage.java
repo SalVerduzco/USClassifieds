@@ -38,6 +38,16 @@ public class UserDetailPage extends AppCompatActivity {
             userId = intent.getStringExtra("userId");
         }
 
+        Button button = findViewById(R.id.button_view_items);
+        button.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(UserDetailPage.this, ItemListActivity.class);
+                intent.putExtra("option", "friend");
+                intent.putExtra("friend_user_id", userId);
+                startActivityForResult(intent, 0);
+            }
+        });
+
         email = findViewById(R.id.email);
         phone = findViewById(R.id.number);
         location = findViewById(R.id.location);

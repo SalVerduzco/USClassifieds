@@ -47,12 +47,18 @@ public class ItemListActivity extends AppCompatActivity {
             String option = intent.getStringExtra("option");
             // Selling items, default to sold
             if (option != null && option.equals("selling")) {
-                textViewTitle.setText("Currently Selling");
+                textViewTitle.setText("Selling Items");
                 query = firestoreHelper.getSellingItemsByUserIdRef(
                         UserSingleton.getInstance(getApplicationContext()).getID()
                 );
+            } else if (option != null && option.equals("friend")) {
+                String friendUserId = intent.getStringExtra("friend_user_id");
+                textViewTitle.setText("Friends' Selling Items");
+                query = firestoreHelper.getSellingItemsByUserIdRef(
+                        friendUserId
+                );
             } else {
-                textViewTitle.setText("Sold");
+                textViewTitle.setText("Sold Items");
                 query = firestoreHelper.getSoldItemsByUserIdRef(
                         UserSingleton.getInstance(getApplicationContext()).getID()
                 );
